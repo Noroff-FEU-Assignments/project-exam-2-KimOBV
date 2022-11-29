@@ -1,0 +1,177 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: $bg-color;
+	color: white;
+	font-family: 'Space Grotesk', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+	font-family: 'Space Grotesk', sans-serif;
+	text-transform: uppercase;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	width: 20em;
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: $clr-links;
+	padding: 10px;
+	font-size: 20px;
+}
+
+.heading {
+	margin-bottom: 0;
+	color: $clr-heading;
+}
+
+.btn {
+	background-color: #003d3b;
+	border-radius: 5px;
+	color: white;
+}
+
+.background-image {
+	margin: auto;
+	width: 100%;
+	height: auto;
+}
+
+.center-align {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.active {
+	color: $link-active;
+	font-weight: bold;
+}
+
+.avatar {
+	width: 50px;
+	height: 50px;
+	object-fit: contain;
+}
+
+.user-avatar {
+	border-radius: 9999px;
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+}
+
+.banner {
+	width: 300px;
+	object-fit: contain;
+}
+
+.row,
+.col {
+	padding: 0;
+}
+
+.form-error {
+	color: $clr-error;
+}
+
+.cta {
+	width: 100%;
+	display: block;
+	background-color: $clr-cta;
+	text-align: center;
+	padding: 10px 0;
+	margin-top: 10px;
+	font-size: 20px;
+	border: none;
+}
+
+.cta-secondary {
+	@extend .cta;
+	border: 2px solid $clr-cta;
+	background-color: unset;
+	color: white;
+	border-radius: 9999px;
+}
+
+.delete {
+	border: 2px solid $clr-error;
+	color: white;
+}
+
+.icon {
+	color: $clr-icon;
+}
+
+.cta:hover {
+	background-color: $clr-cta-hover;
+	color: white;
+}
+
+.icon:hover,
+.Link:hover,
+.NavLink:hover,
+a:hover {
+	color: $clr-cta-hover;
+}
+
+.profile-avatar:hover {
+	border: 2px solid $clr-cta-hover;
+}
+
+.required {
+	color: #cf6679;
+	margin-left: 5px;
+}
+
+.optional {
+	color: $clr-text;
+}
+
+.delete:hover {
+	background-color: #cf6679;
+}
+.unfollow-btn {
+	width: 110px;
+	padding: 5px 15px;
+	border: 2px solid $clr-cta;
+	background-color: transparent;
+	color: $clr-text;
+	border-radius: 9999px;
+}
+
+.unfollow-btn:after {
+	content: 'Following';
+}
+.unfollow-btn:hover::after {
+	content: 'Unfollow';
+}
+.unfollow-btn:hover {
+	border: 2px solid $clr-cta-hover;
+}
+.follow-btn {
+	width: 110px;
+	padding: 5px 15px;
+	border: 2px solid $clr-cta;
+	background-color: transparent;
+	color: $clr-cta;
+	border-radius: 9999px;
+}
+.follow-btn::after {
+	content: 'Follow';
+}
+.follow-btn:hover {
+	color: $clr-cta-hover;
+	border-color: $clr-cta-hover;
+}

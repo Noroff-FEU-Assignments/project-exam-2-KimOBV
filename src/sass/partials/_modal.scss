@@ -1,0 +1,15 @@
+.modal-content {
+	background-color: $clr-dark;
+	border-radius: 0;
+	border: $border;
+	max-width: 500px;
+
+	.modal-header {
+		color: $clr-cta;
+		border-bottom: $border;
+	}
+
+	.btn-close {
+		border-radius: 0;
+	}
+}

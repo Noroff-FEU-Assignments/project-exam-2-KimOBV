@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+@import 'partials/variables';
+@import 'partials/common';
+@import 'partials/navlayout';
+@import 'partials/modal';
+@import 'partials/forms';
+//Landing page stylings
+@import 'partials/home/landing';
+
+//Post stylings
+@import 'partials/posts/posts';
+@import 'partials/posts/post';
+//User stylings
+@import 'partials/user/userPage';
+
+//Profile stylings
+@import 'partials/profiles/profiles';
+
+.follow-feed {
+	cursor: pointer;
+	padding: 10px;
+}
+.follow-feed:hover {
+	background-color: $clr-dark;
+	border: $border;
+	margin: -2px;
+}
