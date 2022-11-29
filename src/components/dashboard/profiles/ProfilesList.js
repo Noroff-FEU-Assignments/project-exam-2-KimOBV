@@ -37,7 +37,7 @@ export default function ProfilesList() {
 			<div className="profile-list-container container">
 				{profiles.map((profile, index) => {
 					return (
-						<Link to={`/profile/${profile.name}`} className="">
+						<Link to={`/u/${profile.name}`} className="">
 							<div key={index} className="profile-container">
 								<Banner image={profile.banner} class={'profile-list-banner'}>
 									<Avatar image={profile.avatar} class={'user-avatar profile-avatar'} alt={profile.name} />

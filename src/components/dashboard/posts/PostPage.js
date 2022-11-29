@@ -1,10 +1,10 @@
-import PostsList from './PostsList';
+import Explore from './PostsList';
 
 export default function PostPage() {
-	document.title = `Howler | Home`;
+	document.title = `Howler | Explore`;
 	return (
 		<>
-			<PostsList />
+			<Explore />
 		</>
 	);
 }

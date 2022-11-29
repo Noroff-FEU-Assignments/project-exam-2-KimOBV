@@ -6,7 +6,7 @@ import { ChatBubbleBottomCenterTextIcon, HeartIcon } from '@heroicons/react/24/o
 import moment from 'moment';
 import React from 'react';
 
-export default function PostsList() {
+export default function Explore() {
 	const { state } = useStore();
 
 	console.log('state', state);

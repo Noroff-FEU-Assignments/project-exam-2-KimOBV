@@ -43,11 +43,11 @@ export default function NavLayout() {
 								<HomeIcon className="icon icon-nav" />
 								Home
 							</NavLink>
-							<NavLink to="/posts">
+							<NavLink to="/explore">
 								<HashtagIcon className="icon icon-nav" />
 								Explore
 							</NavLink>
-							<NavLink to="/profiles">
+							<NavLink to="/people">
 								<UsersIcon className="icon icon-nav" />
 								People
 							</NavLink>

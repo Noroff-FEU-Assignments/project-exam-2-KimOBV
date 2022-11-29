@@ -1,6 +1,6 @@
 import NavLayout from './components/layout/NavLayout';
 import UserProfilePage from './components/dashboard/user/UserProfilePage';
-import PostPage from './components/dashboard/posts/PostPage';
+import Explore from './components/dashboard/posts/PostPage';
 import PostDetails from './components/dashboard/posts/PostDetails';
 import ProfilesPage from './components/dashboard/profiles/ProfilesPage';
 import ProfileDetails from './components/dashboard/profiles/ProfileDetails';
@@ -25,10 +25,10 @@ function App() {
 							<Route path="/register" exact element={<Register />} />
 							<Route path="/user/:name" element={<UserProfilePage />} />
 							<Route path="/feed" element={<Feed />} />
-							<Route path="/posts" element={<PostPage />} />
+							<Route path="/explore" element={<Explore />} />
 							<Route path="/posts/:id" element={<PostDetails />} />
-							<Route path="/profiles" element={<ProfilesPage />} />
-							<Route path="/profile/:name" element={<ProfileDetails />} />
+							<Route path="/people" element={<ProfilesPage />} />
+							<Route path="/u/:name" element={<ProfileDetails />} />
 							<Route path="/new-post" element={<CreatePost />} />
 							<Route path="*" element={<Landing />} />
 						</Routes>
