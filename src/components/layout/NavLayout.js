@@ -91,7 +91,7 @@ export default function NavLayout() {
 				)}
 			</Nav>
 
-			<Nav className="d-block d-lg-none d-lg-flex nav-lg mobile-nav-wrapper">
+			<Nav className="d-block d-lg-none d-sm-flex nav-lg mobile-nav-wrapper">
 				{[false].map((expand) => (
 					<Navbar key={expand} expand={expand} className="mobile-nav p-0">
 						<Nav className="justify-content-end flex-grow-1 pe-3">

@@ -4,7 +4,7 @@ import ErrorMessage from '../../common/ErrorMessage';
 import { Link } from 'react-router-dom';
 import Avatar from '../../common/DefaultAvatar';
 import Banner from '../../common/DefaultBanner';
-import { Row } from 'react-bootstrap';
+import Heading from '../../layout/Heading';
 
 export default function ProfilesList() {
 	const [error, setError] = useState(null);
@@ -38,15 +38,23 @@ export default function ProfilesList() {
 					console.log(profile);
 					return (
 						<div key={profile.id} className="container-people">
-							<Link to={`/u/${profile.name}`}>
-								<Banner image={profile.banner} class={'container-banner'}>
-									<Avatar image={profile.avatar} class={'container-avatar'} alt={profile.name} />
-								</Banner>
-								<h3>@{profile.name}</h3>
-								<div className="person-stats">
-									<p>Following {profile._count.following}</p>
-									<p>Followers {profile._count.followers}</p>
-									<p>Posts {profile._count.posts}</p>
+							<Banner image={profile.banner} class={'people-banner'} />
+							<Link className="people-link" to={`/u/${profile.name}`}>
+								<div className="people-info">
+									<div className="people-info-left">
+										<Avatar image={profile.avatar} class={'people-avatar'} alt={profile.name} />
+									</div>
+									<div className="people-info-right">
+										<div className="people-info-top">
+											<h3>{'@' + profile.name}</h3>
+											<p className="text-muted">{profile.email}</p>
+										</div>
+										<div className="people-info-bottom">
+											<p>Following {profile._count.following}</p>
+											<p>Followers {profile._count.followers}</p>
+											<p>Posts {profile._count.posts}</p>
+										</div>
+									</div>
 								</div>
 							</Link>
 						</div>

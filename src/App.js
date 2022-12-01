@@ -10,9 +10,9 @@ import Landing from './components/home/Landing';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './sass/styles.scss';
 import Register from './components/home/Register';
-import GetHomeFeed from './components/dashboard/following/FeedHome';
 import { Row, Col, Container } from 'react-bootstrap';
 import PageExplore from './components/dashboard/posts/PageExplore';
+import HomeFeed from './components/dashboard/following/PageHome';
 
 function App() {
 	return (
@@ -29,7 +29,7 @@ function App() {
 									<Route path="/" exact element={<Landing />} />
 									<Route path="/register" exact element={<Register />} />
 									<Route path="/user/:name" element={<UserProfilePage />} />
-									<Route path="/home" element={<GetHomeFeed />} />
+									<Route path="/home" element={<HomeFeed />} />
 									<Route path="/explore" element={<PageExplore />} />
 									<Route path="/posts/:id" element={<PostDetails />} />
 									<Route path="/people" element={<ProfilesPage />} />

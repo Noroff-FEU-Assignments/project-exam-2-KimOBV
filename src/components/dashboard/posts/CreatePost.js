@@ -8,8 +8,6 @@ import useStore from '../../../context/PostContext';
 import ModalVertical from '../../common/ModalVertical';
 import { PhotoIcon } from '@heroicons/react/24/outline';
 import { Button } from 'react-bootstrap';
-import Avatar from '../../common/DefaultAvatar';
-import userEvent from '@testing-library/user-event';
 
 const schema = yup.object().shape({
 	title: yup.string().required('Please enter a title'),
@@ -23,7 +21,6 @@ export default function CreatePost() {
 	const [message, setMessage] = useState('');
 	const { state, addPost } = useStore();
 	const [characterCount, setCharacterCount] = useState(0);
-	document.title = 'Howler | New Post';
 
 	console.log('posts', state);
 
@@ -77,8 +74,10 @@ export default function CreatePost() {
 					<input type="text" id="title" placeholder="Title" {...register('title')} />
 					{errors.title && <ErrorMessage>{errors.title.message}</ErrorMessage>}
 				</div>
-				<div>
-					<textarea id="style-2" className="scrollbar" placeholder="What's up?" {...register('body')} rows={5} maxLength={280} onChange={(e) => setCharacterCount(e.target.value.length)}></textarea>
+				<div className="">
+					<span className="msg-length">{characterCount}/280</span>
+					<textarea id="style-2" className="scrollbar" placeholder="What's up?" {...register('body')} rows={6} maxLength={280} onChange={(e) => setCharacterCount(e.target.value.length)}></textarea>
+
 					{errors.body && <ErrorMessage>{errors.body.message}</ErrorMessage>}
 				</div>
 				<div className="form-add">
