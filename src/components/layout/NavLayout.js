@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import NavProfile from '../dashboard/user/NavProfile';
 import ModalVertical from '../common/ModalVertical';
 import logo from '../../images/Logo_Round.png';
-import { ArrowRightOnRectangleIcon, HashtagIcon, HomeIcon, UserIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { ArrowRightOnRectangleIcon, EllipsisHorizontalIcon, HashtagIcon, HomeIcon, UserIcon, UsersIcon } from '@heroicons/react/24/outline';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
@@ -25,7 +25,7 @@ export default function NavLayout() {
 	};
 
 	return (
-		<header>
+		<>
 			<Nav className="desktop-nav d-none d-lg-flex nav-lg">
 				{auth ? (
 					<>
@@ -34,12 +34,7 @@ export default function NavLayout() {
 							Howler
 						</NavLink>
 						<div className="admin-container">
-							<NavLink className={'cta-secondary'} to="/new-post">
-								New post
-							</NavLink>
-							<br />
-							<br />
-							<NavLink to="/feed">
+							<NavLink to="/home">
 								<HomeIcon className="icon icon-nav" />
 								Home
 							</NavLink>
@@ -55,19 +50,37 @@ export default function NavLayout() {
 								<UserIcon className="icon icon-nav" />
 								Profile
 							</NavLink>
+							<br />
+							<NavLink className={'cta-secondary'} to="/new-post">
+								New post
+							</NavLink>
 						</div>
 						<div className="user-container">
 							<NavProfile />
-							<Link onClick={() => setModalShowLog(true)}>
-								<ArrowRightOnRectangleIcon className="icon icon-nav" />
-								Logout
-							</Link>
-							<ModalVertical show={modalShowLog} onHide={() => setModalShowLog(false)} heading="Do you want to log out of Howler?">
-								<p>Are you certain you want to log out?</p>
-								<button onClick={logout} className="cta-secondary">
-									Yes, log me out
-								</button>
-							</ModalVertical>
+							<OverlayTrigger
+								className="icon icon-nav-mob"
+								trigger="click"
+								rootClose
+								placement="top"
+								overlay={
+									<Popover id={`popover`}>
+										<Link className="logout-mob" onClick={() => setModalShowLog(true)}>
+											<ArrowRightOnRectangleIcon className="icon icon-nav" />
+											Logout
+										</Link>
+										<ModalVertical show={modalShowLog} onHide={() => setModalShowLog(false)} heading="Do you want to log out of Howler?">
+											<p>Are you certain you want to log out?</p>
+											<button onClick={logout} className="cta-secondary">
+												Yes, log me out
+											</button>
+										</ModalVertical>
+									</Popover>
+								}
+							>
+								<Button className="user-link" variant="link">
+									<EllipsisHorizontalIcon className="icon icon-user" />
+								</Button>
+							</OverlayTrigger>
 						</div>
 					</>
 				) : (
@@ -78,20 +91,20 @@ export default function NavLayout() {
 				)}
 			</Nav>
 
-			<Nav className="d-block d-lg-none mobile-nav-wrapper">
+			<Nav className="d-block d-lg-none d-lg-flex nav-lg mobile-nav-wrapper">
 				{[false].map((expand) => (
 					<Navbar key={expand} expand={expand} className="mobile-nav p-0">
 						<Nav className="justify-content-end flex-grow-1 pe-3">
 							{auth ? (
 								<>
 									<div className="mobile-nav">
-										<NavLink to="/feed">
+										<NavLink to="/home">
 											<HomeIcon className="icon icon-nav-mob" />
 										</NavLink>
-										<NavLink to="/posts">
+										<NavLink to="/explore">
 											<HashtagIcon className="icon icon-nav-mob" />
 										</NavLink>
-										<NavLink to="/profiles">
+										<NavLink to="/people">
 											<UsersIcon className="icon icon-nav-mob" />
 										</NavLink>
 										<OverlayTrigger
@@ -109,6 +122,12 @@ export default function NavLayout() {
 														<ArrowRightOnRectangleIcon className="icon icon-nav" />
 														Logout
 													</Link>
+													<ModalVertical show={modalShowLog} onHide={() => setModalShowLog(false)} heading="Do you want to log out of Howler?">
+														<p>Are you certain you want to log out?</p>
+														<button onClick={logout} className="cta-secondary">
+															Yes, log me out
+														</button>
+													</ModalVertical>
 												</Popover>
 											}
 										>
@@ -125,6 +144,6 @@ export default function NavLayout() {
 					</Navbar>
 				))}
 			</Nav>
-		</header>
+		</>
 	);
 }

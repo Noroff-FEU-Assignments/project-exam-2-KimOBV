@@ -5,6 +5,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import ErrorMessage from '../../common/ErrorMessage';
 import useAxios from '../../../hooks/useAxios';
 import useStore from '../../../context/PostContext';
+import ModalVertical from '../../common/ModalVertical';
+import { PhotoIcon } from '@heroicons/react/24/outline';
+import { Button } from 'react-bootstrap';
+import Avatar from '../../common/DefaultAvatar';
+import userEvent from '@testing-library/user-event';
 
 const schema = yup.object().shape({
 	title: yup.string().required('Please enter a title'),
@@ -17,6 +22,7 @@ export default function CreatePost() {
 	const [postError, setPostError] = useState(null);
 	const [message, setMessage] = useState('');
 	const { state, addPost } = useStore();
+	const [characterCount, setCharacterCount] = useState(0);
 	document.title = 'Howler | New Post';
 
 	console.log('posts', state);
@@ -31,6 +37,8 @@ export default function CreatePost() {
 	});
 
 	const http = useAxios();
+
+	const [modalShowBanner, setModalShowUpdate] = useState(false);
 
 	async function postComment(data) {
 		setSubmitting(true);
@@ -61,28 +69,33 @@ export default function CreatePost() {
 			setSubmitting(false);
 		}
 	}
-
 	return (
 		<>
-			<form onSubmit={handleSubmit(postComment)} className="mt-5">
+			<form onSubmit={handleSubmit(postComment)} className="mt-3">
 				{postError && <ErrorMessage>{postError}</ErrorMessage>}
 				<div>
-					<label htmlFor="title">Title:</label>
-					<input type="text" id="title" {...register('title')} />
+					<input type="text" id="title" placeholder="Title" {...register('title')} />
 					{errors.title && <ErrorMessage>{errors.title.message}</ErrorMessage>}
 				</div>
 				<div>
-					<label htmlFor="body">Message:</label>
-					<textarea id="body" {...register('body')} rows={6}></textarea>
+					<textarea id="style-2" className="scrollbar" placeholder="What's up?" {...register('body')} rows={5} maxLength={280} onChange={(e) => setCharacterCount(e.target.value.length)}></textarea>
 					{errors.body && <ErrorMessage>{errors.body.message}</ErrorMessage>}
 				</div>
-				<div>
-					<label htmlFor="media">Image Url:</label>
-					<input id="media" {...register('image')} />
-					{errors.image && <ErrorMessage>{errors.image.message}</ErrorMessage>}
+				<div className="form-add">
+					<PhotoIcon className="add-image" onClick={() => setModalShowUpdate(true)} />
+					<Button type="submit" className="cta-secondary post-btn">
+						Post
+					</Button>
+					<ModalVertical show={modalShowBanner} onHide={() => setModalShowUpdate(false)} heading="Add an URL to an image or a gif">
+						<input id="media" placeholder="https://imageURLGoesHere.com/gif" {...register('image')} />
+						<Button className="cta-secondary" onClick={() => setModalShowUpdate(false)}>
+							Add to post
+						</Button>
+						{errors.image && <ErrorMessage>{errors.image.message}</ErrorMessage>}
+					</ModalVertical>
 				</div>
-				<button className="cta">Post</button>
 				{isSubmitSuccessful && <span className="success">{message}</span>}
+				<br />
 			</form>
 		</>
 	);

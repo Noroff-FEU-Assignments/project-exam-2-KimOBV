@@ -1,5 +1,5 @@
 .profile-list-container {
-	max-width: 900px;
+	max-width: 45em;
 	margin: auto;
 	display: flex;
 	flex-direction: column;
@@ -48,4 +48,28 @@
 .profile-email {
 	color: $clr-text;
 	font-size: 0.9rem;
+}
+.followCard {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	justify-content: flex-start;
+	width: 80%;
+	height: 8em;
+	border: 2px solid $clr-dark-1;
+	border-radius: 9999px;
+	padding: 0em;
+	margin: 0px;
+
+	img {
+		margin: 0em 1em 0em 2em;
+		align-self: center;
+		height: 100px;
+		width: 100px;
+		border: 3px solid $clr-text;
+	}
+	h4 {
+		align-self: center;
+		margin-left: 1em;
+	}
 }

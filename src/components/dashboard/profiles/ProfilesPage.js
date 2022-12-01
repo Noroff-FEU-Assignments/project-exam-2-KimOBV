@@ -1,7 +1,7 @@
 import ProfilesList from './ProfilesList';
 
 export default function ProfilesPage() {
-	document.title = 'Howler | People';
+	document.title = 'People | Howler';
 	return (
 		<>
 			<ProfilesList />

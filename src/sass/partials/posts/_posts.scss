@@ -1,20 +1,32 @@
-.posts-container {
-	background-color: $clr-dark;
-	max-width: 800px;
-	padding: 1rem;
-	margin: 2rem auto;
-	border: $border;
-}
+.post-lefst {
+	width: 100%;
+	flex-wrap: wrap;
+	flex-direction: row;
+	margin: 0em 1em 0em 0em;
+	padding: 0em;
 
+	a,
+	h5 {
+		font-size: 1rem;
+		margin: 0em;
+		padding: 0em 0em 1em 10px;
+	}
+}
 h2,
 h3 {
+	font-size: 1.2rem;
+	margin: 0.4em;
+	padding: 0em;
 	color: $clr-heading;
-	overflow-wrap: break-word;
+	word-break: word-break;
 }
 
 p {
+	font-size: 1rem;
+	margin: auto 0em 1em 0.7em;
+	padding: 0em;
 	color: $clr-text;
-	overflow-wrap: break-word;
+	word-break: word-break;
 }
 
 .text-muted {
@@ -25,30 +37,17 @@ p {
 	margin-top: 1rem;
 }
 
-.icon-comment,
-.icon-smile {
-	width: 30px;
-}
-
-.icon-smile {
-	margin-left: 20px;
-}
-
-.post-count {
-	color: $link-active;
-	font-size: 30px;
-	padding-left: 5px;
+.interactions {
+	display: flex;
+	flex-direction: row;
+	align-content: space-between;
+	margin: 0.4em;
+	width: 100%;
 }
 
 .btn-container {
 	height: 100%;
 	margin-top: auto;
-}
-
-.post-media {
-	height: fit-content;
-	background-size: contain;
-	overflow-wrap: anywhere;
 }
 
 /* .column-left.col-12 {

@@ -1,8 +1,9 @@
 .modal-content {
-	background-color: $clr-dark;
+	background-color: $clr-dark-1;
 	border-radius: 0;
 	border: $border;
 	max-width: 500px;
+	border-radius: 15px;
 
 	.modal-header {
 		color: $clr-cta;
@@ -11,5 +12,31 @@
 
 	.btn-close {
 		border-radius: 0;
+		color: $clr-text;
+		background-color: $clr-text;
+		border-radius: 9999px;
 	}
+}
+.form-add {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 0em 1em;
+	justify-content: space-between;
+	align-content: center;
+	height: auto;
+}
+.add-image {
+	width: 32px;
+	color: $clr-links;
+	align-self: center;
+}
+.add-image::placeholder {
+	text-align: center;
+}
+.post-btn {
+	font-size: 1rem;
+	text-align: center;
+	width: auto;
+	padding: 0.3em 1em;
 }

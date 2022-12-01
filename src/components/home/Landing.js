@@ -7,24 +7,23 @@ import LoginForm from '../login/LoginForm';
 export default function Landing() {
 	return (
 		<>
-			<Container>
-				<div className="login-background"></div>
-				<main className="login-container">
-					<Row>
-						<Col lg={6} md={12}>
+			<Col>
+				<Container>
+					<main className="login-container">
+						<Row>
 							<div className="login-introduction">
-								<BigHeading content="Content with substance. Find  people and be inspired." />
+								<BigHeading content="Howler is what's happening and what people are talking about right now." />
 								<br></br>
-								<BigParagraph content="A conscious social media platform, created for a more mindful approach to traditional social medias." />
+								<BigParagraph content="We believe real change starts with conversation. Here, your voice matters." />
 							</div>
-						</Col>
-						<Col lg={6} md={12}>
-							<LoginForm />
-							<Link to="/register">Not a user?</Link>
-						</Col>
-					</Row>
-				</main>
-			</Container>
+							<div>
+								<LoginForm />
+								<Link to="/register">Not a user?</Link>
+							</div>
+						</Row>
+					</main>
+				</Container>
+			</Col>
 		</>
 	);
 }

@@ -4,6 +4,7 @@ import ErrorMessage from '../../common/ErrorMessage';
 import { Link } from 'react-router-dom';
 import Avatar from '../../common/DefaultAvatar';
 import Banner from '../../common/DefaultBanner';
+import { Row } from 'react-bootstrap';
 
 export default function ProfilesList() {
 	const [error, setError] = useState(null);
@@ -27,35 +28,28 @@ export default function ProfilesList() {
 		getProfiles();
 		// eslint-disable-next-line
 	}, []);
-
 	if (loading) return <div>Loading profiles...</div>;
-
 	if (error) return <ErrorMessage />;
 
 	return (
 		<>
-			<div className="profile-list-container container">
-				{profiles.map((profile, index) => {
+			<div className="container-peoples">
+				{profiles.map((profile) => {
+					console.log(profile);
 					return (
-						<Link to={`/u/${profile.name}`} className="">
-							<div key={index} className="profile-container">
-								<Banner image={profile.banner} class={'profile-list-banner'}>
-									<Avatar image={profile.avatar} class={'user-avatar profile-avatar'} alt={profile.name} />
+						<div key={profile.id} className="container-people">
+							<Link to={`/u/${profile.name}`}>
+								<Banner image={profile.banner} class={'container-banner'}>
+									<Avatar image={profile.avatar} class={'container-avatar'} alt={profile.name} />
 								</Banner>
-								<div className="profile-card-bottom">
-									<div className="d-flex justify-content-end text-center pt-2">
-										<div>
-											<span className="d-block count-follow-text pe-5">{profile._count.following} Following</span>
-										</div>
-										<div>
-											<span className="d-block count-follow-text">{profile._count.followers} Followers</span>
-										</div>
-									</div>
-									<h2 className="profile-name pb-2">@{profile.name}</h2>
-									<span className="profile-email d-block pb-2">{profile.email}</span>
+								<h3>@{profile.name}</h3>
+								<div className="person-stats">
+									<p>Following {profile._count.following}</p>
+									<p>Followers {profile._count.followers}</p>
+									<p>Posts {profile._count.posts}</p>
 								</div>
-							</div>
-						</Link>
+							</Link>
+						</div>
 					);
 				})}
 			</div>

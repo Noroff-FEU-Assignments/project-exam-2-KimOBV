@@ -5,9 +5,23 @@
 }
 
 body {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 	background-color: $bg-color;
 	color: white;
 	font-family: 'Space Grotesk', sans-serif;
+}
+.row > * {
+	padding: 0em;
+	margin: 0em;
+}
+.col {
+	width: auto;
+	display: flex;
+	flex-direction: row;
+	align-content: flex-end;
+	justify-content: right;
 }
 
 h1,
@@ -17,18 +31,19 @@ h3 {
 	text-transform: uppercase;
 }
 
-header {
-	display: flex;
-	flex-direction: column;
-	width: 20em;
-	height: 100%;
+Nav {
+	margin: 0em;
+	min-width: 1em;
+	width: 100%;
+	position: fixed;
+	left: 0px;
 }
 
 a {
 	text-decoration: none;
 	color: $clr-links;
 	padding: 10px;
-	font-size: 20px;
+	font-size: 1rem;
 }
 
 .heading {
@@ -60,8 +75,8 @@ a {
 }
 
 .avatar {
-	width: 50px;
-	height: 50px;
+	width: 48px;
+	height: 48px;
 	object-fit: contain;
 }
 
@@ -77,13 +92,12 @@ a {
 	object-fit: contain;
 }
 
-.row,
-.col {
-	padding: 0;
-}
-
 .form-error {
 	color: $clr-error;
+}
+
+.logo-container {
+	color: $clr-cta;
 }
 
 .cta {
@@ -100,7 +114,6 @@ a {
 .cta-secondary {
 	@extend .cta;
 	border: 2px solid $clr-cta;
-	background-color: unset;
 	color: white;
 	border-radius: 9999px;
 }
@@ -174,4 +187,7 @@ a:hover {
 .follow-btn:hover {
 	color: $clr-cta-hover;
 	border-color: $clr-cta-hover;
+}
+.settings {
+	height: 2em;
 }

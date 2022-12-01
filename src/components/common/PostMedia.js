@@ -1,10 +1,10 @@
 export default function PostMedia(props) {
 	const imgHeight = '';
-	const noImgHeight = 'hidden';
+	const noImgHeight = 'none';
 
 	return (
 		<>
-			<img src={`${props.image}`} style={{ visibility: `${props.image !== '' && props.image !== null ? imgHeight : noImgHeight}` }} alt={`${props.image}`} className="background-image post-media"></img>
+			<img src={`${props.image}`} style={{ display: `${props.image !== '' && props.image !== null ? imgHeight : noImgHeight}` }} alt={`${props.image}`} className="background-image post-media"></img>
 		</>
 	);
 }

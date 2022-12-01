@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/20/solid';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import PropTypes from 'prop-types';
 
 export default function UserFollowing({ followers, following }) {
