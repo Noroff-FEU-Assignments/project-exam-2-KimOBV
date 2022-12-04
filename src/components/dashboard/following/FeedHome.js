@@ -51,9 +51,11 @@ export default function GetFeedHome() {
 					console.log(post);
 					return (
 						<div key={post.id} className="container-post">
-							<Link to={`/u/${post.author.name}`} className="post-left">
-								<Avatar image={post.author.avatar} class={'post-avatar'} />
-							</Link>
+							<div className="post-left">
+								<Link to={`/u/${post.author.name}`}>
+									<Avatar image={post.author.avatar} class={'post-avatar'} />
+								</Link>
+							</div>
 							<div className="post-right">
 								<Link to={`/u/${post.author.name}`}>
 									<b>@{post.author.name}</b>

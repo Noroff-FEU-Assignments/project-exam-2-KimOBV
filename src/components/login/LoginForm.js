@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AuthContext } from '../../context/AuthContext';
 import { BASE_URL } from '../../constants/api';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../common/ErrorMessage';
 import { Col } from 'react-bootstrap';
 

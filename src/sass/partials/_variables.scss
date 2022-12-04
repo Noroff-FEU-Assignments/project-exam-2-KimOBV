@@ -1,14 +1,14 @@
 $bg-color: #000000;
-$bg-color-active: #1b1c1f;
+$bg-color-active: #080808;
 $clr-dark: #091620;
 $clr-dark-1: #303437;
 $clr-heading: #d2dcde;
 $clr-text: #e7e9ea;
-$clr-links: #fff;
+$clr-links: #e7e9ea;
 $clr-cta: #ff7900;
 $clr-cta-hover: #e66e01;
 $clr-icon: #71767a;
-$clr-error: #fd9798;
+$clr-alert: #ff0000;
 $link-active: #fe6601;
 
 $border: 2px solid #303437;
@@ -22,18 +22,3 @@ $font-weight: (
 	'semibold': 600,
 	'bold': 700,
 );
-
-$box-shadow: 0px 2px 20px 3px #ebebef;
-$box-border-radius: 0.4rem;
-$box-border: 1px solid #e6e6eb;
-
-$colour-primary: #7259ff;
-$colour-primary-light: #7259ff20;
-$colour-primary-light-hover: #7259ff35;
-$colour-primary-hover: #5f4bd3;
-$colour-text: #586073;
-$colour-text-light: #7a7f94;
-$colour-text-dark: #242732;
-
-$background: rgb(48, 53, 65);
-$background-linear: linear-gradient(0deg, rgba(48, 52, 65, 1) 0%, rgba(56, 57, 78, 1) 34%, rgba(37, 32, 45, 1) 90%);

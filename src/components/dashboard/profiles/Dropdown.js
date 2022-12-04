@@ -14,7 +14,7 @@ export default function DropdownMenu() {
 	return (
 		<>
 			<Button variant="link" className="settings" onClick={() => setModalShowUpdate(true)}>
-				<Cog6ToothIcon className="settings" />
+				<Cog6ToothIcon id="settings" />
 			</Button>
 			<ModalVertical show={modalShowBanner} onHide={() => setModalShowUpdate(false)} heading="Update your profile">
 				<UpdateBanner name={name} />

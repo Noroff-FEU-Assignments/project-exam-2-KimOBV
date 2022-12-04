@@ -5,9 +5,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import ErrorMessage from '../../common/ErrorMessage';
 import useAxios from '../../../hooks/useAxios';
 import useStore from '../../../context/PostContext';
-import ModalVertical from '../../common/ModalVertical';
 import { PhotoIcon } from '@heroicons/react/24/outline';
-import { Button } from 'react-bootstrap';
+import { Accordion, Button, Card, useAccordionButton } from 'react-bootstrap';
+import Avatar from '../../common/DefaultAvatar';
+import PostMedia from '../../common/PostMedia';
+
+const user = JSON.parse(localStorage.getItem('auth'));
 
 const schema = yup.object().shape({
 	title: yup.string().required('Please enter a title'),
@@ -35,7 +38,23 @@ export default function CreatePost() {
 
 	const http = useAxios();
 
-	const [modalShowBanner, setModalShowUpdate] = useState(false);
+	const [imglink, setimglink] = useState('');
+
+	const handleChange = (event) => {
+		setimglink(event.target.value);
+
+		console.log('value is:', event.target.value);
+	};
+
+	function CustomToggle({ children, eventKey }) {
+		const decoratedOnClick = useAccordionButton(eventKey, () => console.log('totally custom!'));
+
+		return (
+			<button type="button" style={{ backgroundColor: 'transparent', border: 'none' }} onClick={decoratedOnClick}>
+				{children}
+			</button>
+		);
+	}
 
 	async function postComment(data) {
 		setSubmitting(true);
@@ -68,34 +87,52 @@ export default function CreatePost() {
 	}
 	return (
 		<>
-			<form onSubmit={handleSubmit(postComment)} className="mt-3">
-				{postError && <ErrorMessage>{postError}</ErrorMessage>}
-				<div>
-					<input type="text" id="title" placeholder="Title" {...register('title')} />
-					{errors.title && <ErrorMessage>{errors.title.message}</ErrorMessage>}
+			<div className="container-post">
+				<div className="post-left">
+					<Avatar image={user.avatar} class={'post-avatar'} alt={user.name} />
 				</div>
-				<div className="">
-					<span className="msg-length">{characterCount}/280</span>
-					<textarea id="style-2" className="scrollbar" placeholder="What's up?" {...register('body')} rows={6} maxLength={280} onChange={(e) => setCharacterCount(e.target.value.length)}></textarea>
-
-					{errors.body && <ErrorMessage>{errors.body.message}</ErrorMessage>}
+				<div className="post-right">
+					<form onSubmit={handleSubmit(postComment)}>
+						{postError && <ErrorMessage>{postError}</ErrorMessage>}
+						<div>
+							<input type="text" id="title" placeholder="Title" {...register('title')} />
+							{errors.title && <ErrorMessage>{errors.title.message}</ErrorMessage>}
+						</div>
+						<div>
+							<textarea id="style-2" className="scrollbar" placeholder="What's up?" {...register('body')} rows={6} maxLength={280} onChange={(e) => setCharacterCount(e.target.value.length)}></textarea>
+							{errors.body && <ErrorMessage>{errors.body.message}</ErrorMessage>}
+						</div>
+						<PostMedia image={imglink} />
+						<div>
+							<Accordion defaultActiveKey="0" flush>
+								<Card>
+									<Accordion.Collapse eventKey="1">
+										<Card.Body>
+											<input type="media" id="input-image" placeholder="https://imageURLGoesHere.com/gif" {...register('image')} onChange={handleChange} value={imglink} />
+											{errors.image && <ErrorMessage>{errors.image.message}</ErrorMessage>}
+										</Card.Body>
+									</Accordion.Collapse>
+									<Card.Header>
+										<div className="form-ctrl-l">
+											<CustomToggle eventKey="1">
+												<PhotoIcon />
+											</CustomToggle>
+										</div>
+										<div className="form-ctrl-r">
+											<span className="msg-length">{characterCount}/280</span>
+											<Button className="btn btn-primary" id="form-post-btn" type="submit">
+												Post
+											</Button>
+										</div>
+									</Card.Header>
+								</Card>
+							</Accordion>
+						</div>
+						{isSubmitSuccessful && <span className="success">{message}</span>}
+						<br />
+					</form>
 				</div>
-				<div className="form-add">
-					<PhotoIcon className="add-image" onClick={() => setModalShowUpdate(true)} />
-					<Button type="submit" className="cta-secondary post-btn">
-						Post
-					</Button>
-					<ModalVertical show={modalShowBanner} onHide={() => setModalShowUpdate(false)} heading="Add an URL to an image or a gif">
-						<input id="media" placeholder="https://imageURLGoesHere.com/gif" {...register('image')} />
-						<Button className="cta-secondary" onClick={() => setModalShowUpdate(false)}>
-							Add to post
-						</Button>
-						{errors.image && <ErrorMessage>{errors.image.message}</ErrorMessage>}
-					</ModalVertical>
-				</div>
-				{isSubmitSuccessful && <span className="success">{message}</span>}
-				<br />
-			</form>
+			</div>
 		</>
 	);
 }

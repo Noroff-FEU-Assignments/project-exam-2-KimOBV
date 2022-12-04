@@ -10,35 +10,39 @@ import Landing from './components/home/Landing';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './sass/styles.scss';
 import Register from './components/home/Register';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import PageExplore from './components/dashboard/posts/PageExplore';
 import HomeFeed from './components/dashboard/following/PageHome';
 
 function App() {
 	return (
-		<Container>
+		<Container fluid="xl">
 			<AuthProvider>
 				<PostProvider>
 					<Router>
-						<Row className="app">
-							<Col>
+						<Row>
+							<Col md={3} className="ctr-header">
 								<NavLayout />
 							</Col>
-							<Col className="feed" md="auto">
-								<Routes>
-									<Route path="/" exact element={<Landing />} />
-									<Route path="/register" exact element={<Register />} />
-									<Route path="/user/:name" element={<UserProfilePage />} />
-									<Route path="/home" element={<HomeFeed />} />
-									<Route path="/explore" element={<PageExplore />} />
-									<Route path="/posts/:id" element={<PostDetails />} />
-									<Route path="/people" element={<ProfilesPage />} />
-									<Route path="/u/:name" element={<ProfileDetails />} />
-									<Route path="/new-post" element={<CreatePost />} />
-									<Route path="*" element={<Landing />} />
-								</Routes>
+							<Col md={9} className="ctr-main ">
+								<Row>
+									<Col md={7} className="ctr-feed">
+										<Routes>
+											<Route path="/" exact element={<Landing />} />
+											<Route path="/register" exact element={<Register />} />
+											<Route path="/user/:name" element={<UserProfilePage />} />
+											<Route path="/home" element={<HomeFeed />} />
+											<Route path="/explore" element={<PageExplore />} />
+											<Route path="/posts/:id" element={<PostDetails />} />
+											<Route path="/people" element={<ProfilesPage />} />
+											<Route path="/u/:name" element={<ProfileDetails />} />
+											<Route path="/new-post" element={<CreatePost />} />
+											<Route path="*" element={<Landing />} />
+										</Routes>
+									</Col>
+									<Col md={3} responsive="md" className="ctr-sidebar"></Col>
+								</Row>
 							</Col>
-							<Col></Col>
 						</Row>
 					</Router>
 				</PostProvider>

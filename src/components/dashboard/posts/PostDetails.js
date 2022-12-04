@@ -1,14 +1,14 @@
-import Heading from '../../layout/Heading';
 import CommentPost from './CommentPost';
 import ReactPost from './ReactPost';
 import PostMedia from '../../common/PostMedia';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../../constants/api';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { useStore } from '../../../context/PostContext';
+import { ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline';
+import Avatar from '../../common/DefaultAvatar';
+import moment from 'moment';
 
 export default function PostDetails() {
 	const { state, setDetails, setComments, setReactions } = useStore();
@@ -55,45 +55,76 @@ export default function PostDetails() {
 	}
 
 	if (error) {
-		return <div>Error: An error occured with the API call</div>; //add error component
+		return <div>Error: An error occurred with the API call</div>; //add error component
 	}
-	console.log('details', state.details);
+	//console.log('details', state.details);
+
+	const ppl = state.details.author.name;
+	const t1 = `/u/${state.details.author.name}`;
+	const t2 = `/user/${state.details.author.name}`;
+
+	const test = { ppl } !== '' && ppl !== auth ? t1 : t2;
 
 	return (
-		<div className="post-container container">
-			<div className="post-inner-container">
-				<h2>{state.details.title}</h2>
-
-				<p className="post-details-body">{state.details.body}</p>
-				<PostMedia image={state.details.media} />
-				{state.reactions.map((react, index) => {
-					return (
-						<span key={index}>
-							{react.symbol}
-							{react.count}
-						</span>
-					);
-				})}
-				<div className="comment-container">
-					{state.comments.map((comment) => {
-						return (
-							<div key={comment.id}>
-								<span>
-									{comment.owner}: {comment.body}
-								</span>
+		<>
+			<div key={state.id} className="container-post">
+				<Link to={`${test}`} className="post-left">
+					<Avatar image={state.details.author.avatar} class={'post-avatar'} />
+				</Link>
+				<div className="post-right">
+					<Link to={`${test}`}>
+						<b>@{state.details.author.name}</b>
+					</Link>
+					<span>{moment(state.created).fromNow()}</span>
+					<div className="ctr-post">
+						<h3>{state.details.title}</h3>
+						<p>{state.details.body}</p>
+						<PostMedia image={state.details.media} onError={(e) => (e.target.style.display = 'none')} />
+						<div activekey={key} onSelect={(k) => setKey(k)} className="post-interactions ">
+							<div className="ctr-reaction">
+								<div className="r-l">
+									<ChatBubbleBottomCenterIcon className="icon post-icon" />
+									<span className="post-count">{state.comments.length}</span>
+								</div>
+								<div className="r-r">
+									{state.reactions.map((react, index) => {
+										return (
+											<span className="post-count" key={index}>
+												{react.symbol}
+												{react.count}
+											</span>
+										);
+									})}
+								</div>
 							</div>
-						);
-					})}
-				</div>
-				<Tabs activeKey={key} onSelect={(k) => setKey(k)} justify className="mt-3">
-					<Tab eventKey="comment" title="Comment">
-						<CommentPost />
-					</Tab>
-					<Tab eventKey="react" title="React">
+						</div>
 						<ReactPost />
-					</Tab>
-				</Tabs>
+						<CommentPost />
+						<div className="ctr-comment">
+							{state.comments.map((comment) => {
+								console.log(comment);
+								return (
+									<div className="comment container-post" key={comment.id}>
+										<Link to={test} className="comment-left">
+											<Avatar image={comment.author.avatar} class={'comment-avatar'} />
+										</Link>
+										<div className="comment-right">
+											<div className="comment-r-top">
+												<Link to={test}>
+													<b>@{comment.author.name}</b>
+												</Link>
+												<span>{moment(comment.created).fromNow()}</span>
+											</div>
+											<div className="comment-r-bottom"></div>
+											<p className="user-comment">{comment.body}</p>
+										</div>
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }

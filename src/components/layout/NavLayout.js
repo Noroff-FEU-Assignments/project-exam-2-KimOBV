@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import NavProfile from '../dashboard/user/NavProfile';
 import ModalVertical from '../common/ModalVertical';
 import logo from '../../images/Logo_Round.png';
-import { ArrowRightOnRectangleIcon, EllipsisHorizontalIcon, HashtagIcon, HomeIcon, UserIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { ArrowRightOnRectangleIcon, HashtagIcon, HomeIcon, MegaphoneIcon, UserIcon, UsersIcon } from '@heroicons/react/24/outline';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
@@ -26,37 +26,41 @@ export default function NavLayout() {
 
 	return (
 		<>
-			<Nav className="desktop-nav d-none d-lg-flex nav-lg">
+			<Nav className="ctr-nav d-none d-md-flex nav-lg">
 				{auth ? (
 					<>
-						<NavLink onClick="reloadCurrent()" className="logo-container">
-							<img className="logo-img" src={logo} alt="Howler monkey" />
-							Howler
-						</NavLink>
-						<div className="admin-container">
-							<NavLink to="/home">
-								<HomeIcon className="icon icon-nav" />
-								Home
-							</NavLink>
-							<NavLink to="/explore">
-								<HashtagIcon className="icon icon-nav" />
-								Explore
-							</NavLink>
-							<NavLink to="/people">
-								<UsersIcon className="icon icon-nav" />
-								People
-							</NavLink>
-							<NavLink to={`/user/${user.name}`}>
-								<UserIcon className="icon icon-nav" />
-								Profile
-							</NavLink>
-							<br />
-							<NavLink className={'cta-secondary'} to="/new-post">
-								New post
-							</NavLink>
+						<div className="ctr-nav-top">
+							<div className="ctr-logo">
+								<NavLink onClick="reloadCurrent()" className="ctr-logo">
+									<img className="logo-img" src={logo} alt="Howler monkey" />
+								</NavLink>
+							</div>
+							<div className="ctr-link">
+								<NavLink to="/home">
+									<HomeIcon className="icon icon-nav" />
+									<span>Home</span>
+								</NavLink>
+								<NavLink to="/explore">
+									<HashtagIcon className="icon icon-nav" />
+									<span>Explore</span>
+								</NavLink>
+								<NavLink to="/people">
+									<UsersIcon className="icon icon-nav" />
+									<span>People</span>
+								</NavLink>
+								<NavLink to={`/user/${user.name}`}>
+									<UserIcon className="icon icon-nav" />
+									<span>Profile</span>
+								</NavLink>
+								<br />
+								<div className="ctr-post">
+									<NavLink className={'btn btn-primary post-btn'} to="/new-post">
+										<MegaphoneIcon id="post-icon" />
+									</NavLink>
+								</div>
+							</div>
 						</div>
-						<div className="user-container">
-							<NavProfile />
+						<div className="ctr-user">
 							<OverlayTrigger
 								className="icon icon-nav-mob"
 								trigger="click"
@@ -78,7 +82,7 @@ export default function NavLayout() {
 								}
 							>
 								<Button className="user-link" variant="link">
-									<EllipsisHorizontalIcon className="icon icon-user" />
+									<Avatar image={user.avatar} class={'avatar'} alt={user.name} />
 								</Button>
 							</OverlayTrigger>
 						</div>
@@ -91,10 +95,10 @@ export default function NavLayout() {
 				)}
 			</Nav>
 
-			<Nav className="d-block d-lg-none d-sm-flex nav-lg mobile-nav-wrapper">
+			<Nav className="d-block d-md-none d-sm-flex nav-lg">
 				{[false].map((expand) => (
-					<Navbar key={expand} expand={expand} className="mobile-nav p-0">
-						<Nav className="justify-content-end flex-grow-1 pe-3">
+					<Navbar key={expand} expand={expand} className=" p-0">
+						<Nav className="flex-grow-1 pe-3">
 							{auth ? (
 								<>
 									<div className="mobile-nav">
@@ -131,7 +135,7 @@ export default function NavLayout() {
 												</Popover>
 											}
 										>
-											<Button className="profile-btn-mob">
+											<Button id="profile-btn-mob" className="">
 												<Avatar image={user.avatar} class={'avatar'} alt={user.name} />
 											</Button>
 										</OverlayTrigger>

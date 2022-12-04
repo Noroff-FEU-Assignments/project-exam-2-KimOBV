@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import useAxios from '../../../hooks/useAxios';
 import useStore from '../../../context/PostContext';
 import ErrorMessage from '../../common/ErrorMessage';
+import PostDetails from './PostDetails';
 
 const schema = yup.object().shape({
 	symbol: yup.string().required('Please select a symbol'),
@@ -31,6 +32,7 @@ export default function ReactPost() {
 			console.log('response', response);
 			if (response.status === 200 || response.status === 201) {
 				addReaction(response.data);
+				window.location.reload();
 			}
 		} catch (error) {
 			setError(error.toString());
@@ -40,18 +42,25 @@ export default function ReactPost() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(submitReaction)} className="react-form">
+		<>
+			<form id="form-reaction" {...register('emoji')} onSubmit={handleSubmit(submitReaction)}>
+				<button type="submit" value="🍌" {...register('symbol')} onClick={(e) => setEmoji('🍌')}>
+					🍌
+				</button>
+				<button type="submit" value="🙈" {...register('symbol')} onClick={(e) => setEmoji('🙈')}>
+					🙈
+				</button>
+				<button type="submit" value="🙉" {...register('symbol')} onClick={(e) => setEmoji('🙉')}>
+					🙉
+				</button>
+				<button type="submit" value="🙊" {...register('symbol')} onClick={(e) => setEmoji('🙊')}>
+					🙊
+				</button>
+				<button type="submit" value="❤️" {...register('symbol')} onClick={(e) => setEmoji('❤️')}>
+					❤️
+				</button>
+			</form>
 			{error && <ErrorMessage>{error}</ErrorMessage>}
-			<select value={emoji} {...register('symbol')} onChange={(e) => setEmoji(e.target.value)} className="react-select w-100">
-				<option value="">Select an emoji</option>
-				<option>🐵</option>
-				<option>🙈</option>
-				<option>🙉</option>
-				<option>🙊</option>
-				<option>🍌</option>
-				<option>❤️</option>
-			</select>
-			<button className="cta">React</button>
-		</form>
+		</>
 	);
 }

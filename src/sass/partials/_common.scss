@@ -1,193 +1,31 @@
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
-
-body {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	background-color: $bg-color;
-	color: white;
-	font-family: 'Space Grotesk', sans-serif;
-}
-.row > * {
+* {
+	margin: 0em;
 	padding: 0em;
-	margin: 0em;
+	word-break: break-all;
 }
-.col {
-	width: auto;
-	display: flex;
-	flex-direction: row;
-	align-content: flex-end;
-	justify-content: right;
-}
-
-h1,
-h2,
-h3 {
-	font-family: 'Space Grotesk', sans-serif;
-	text-transform: uppercase;
-}
-
-Nav {
-	margin: 0em;
-	min-width: 1em;
-	width: 100%;
-	position: fixed;
-	left: 0px;
+body {
+	background-color: $bg-color;
 }
 
 a {
 	text-decoration: none;
 	color: $clr-links;
-	padding: 10px;
-	font-size: 1rem;
 }
-
-.heading {
-	margin-bottom: 0;
-	color: $clr-heading;
-}
-
-.btn {
-	background-color: #003d3b;
-	border-radius: 5px;
-	color: white;
-}
-
-.background-image {
-	margin: auto;
-	width: 100%;
-	height: auto;
-}
-
-.center-align {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.active {
-	color: $link-active;
-	font-weight: bold;
-}
-
-.avatar {
-	width: 48px;
-	height: 48px;
-	object-fit: contain;
-}
-
-.user-avatar {
-	border-radius: 9999px;
-	width: 100px;
-	height: 100px;
-	object-fit: cover;
-}
-
-.banner {
-	width: 300px;
-	object-fit: contain;
-}
-
-.form-error {
-	color: $clr-error;
-}
-
-.logo-container {
-	color: $clr-cta;
-}
-
-.cta {
-	width: 100%;
-	display: block;
-	background-color: $clr-cta;
-	text-align: center;
-	padding: 10px 0;
-	margin-top: 10px;
-	font-size: 20px;
-	border: none;
-}
-
-.cta-secondary {
-	@extend .cta;
-	border: 2px solid $clr-cta;
-	color: white;
-	border-radius: 9999px;
-}
-
-.delete {
-	border: 2px solid $clr-error;
-	color: white;
-}
-
-.icon {
-	color: $clr-icon;
-}
-
-.cta:hover {
-	background-color: $clr-cta-hover;
-	color: white;
-}
-
-.icon:hover,
-.Link:hover,
-.NavLink:hover,
 a:hover {
 	color: $clr-cta-hover;
 }
-
-.profile-avatar:hover {
-	border: 2px solid $clr-cta-hover;
+.ctr-link a {
+	font-size: 1.2em;
+	margin: 0.8em 0em 0em 0em;
+}
+.ctr-link svg {
+	font-size: 2rem;
+	margin: 0em 0.5em 0em 0em;
+}
+.ctr-link span {
+	font-size: 1.4rem;
 }
 
-.required {
-	color: #cf6679;
-	margin-left: 5px;
-}
-
-.optional {
-	color: $clr-text;
-}
-
-.delete:hover {
-	background-color: #cf6679;
-}
-.unfollow-btn {
-	width: 110px;
-	padding: 5px 15px;
-	border: 2px solid $clr-cta;
-	background-color: transparent;
-	color: $clr-text;
-	border-radius: 9999px;
-}
-
-.unfollow-btn:after {
-	content: 'Following';
-}
-.unfollow-btn:hover::after {
-	content: 'Unfollow';
-}
-.unfollow-btn:hover {
-	border: 2px solid $clr-cta-hover;
-}
-.follow-btn {
-	width: 110px;
-	padding: 5px 15px;
-	border: 2px solid $clr-cta;
-	background-color: transparent;
-	color: $clr-cta;
-	border-radius: 9999px;
-}
-.follow-btn::after {
-	content: 'Follow';
-}
-.follow-btn:hover {
-	color: $clr-cta-hover;
-	border-color: $clr-cta-hover;
-}
-.settings {
-	height: 2em;
+img {
+	width: 5em;
 }

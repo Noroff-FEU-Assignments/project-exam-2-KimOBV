@@ -1,6 +1,6 @@
 form {
 	max-width: 100%;
-	margin: 0 2em;
+	margin: 0em 0em 0em 0em;
 }
 
 label {
@@ -9,64 +9,144 @@ label {
 }
 
 input,
-textarea {
+textarea,
+#input-image {
 	font-size: 1.1rem;
-	width: 100%;
+	width: 96%;
 	padding: 0.5rem;
-	margin: 0em;
+	margin: 0em 0em 0.6em 0em;
 	background-color: $bg-color;
 	border-top: none;
 	border-bottom: $border;
 	border-left: none;
 	border-right: none;
-	border-radius: 5px;
+	border-radius: 20px;
 	color: $clr-text;
 }
 textarea {
-	padding-top: 2rem;
-	margin-top: 0em;
 	resize: vertical;
-	height: 5em;
-	min-height: 5em;
+	height: 4em;
+	min-height: 3em;
+}
+
+.accordion * {
+	background-color: transparent;
+}
+
+.form-acc {
+	background-color: $bg-color;
+}
+
+.card-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	svg {
+		font-size: 2rem;
+		color: $clr-text;
+	}
+	svg:hover {
+		color: $clr-cta;
+	}
+	.form-ctrl-l {
+		margin: auto 0em;
+		width: 4em;
+	}
+	.form-ctrl-r {
+		display: flex;
+		flex-direction: row;
+		width: 15em;
+
+		span {
+			margin: auto 0em;
+			min-width: 4em;
+			font-size: 1.2rem !important;
+			color: $clr-icon;
+		}
+	}
+}
+.card-body {
+	padding: 0em;
 }
 
 #media {
 	padding: 1em;
 }
-
-.msg-length {
-	position: relative;
-	top: 25px;
-	left: 82%;
-	color: $clr-icon;
-}
 ::placeholder {
 	font-size: 1.1rem;
-	color: $clr-heading;
+	color: $clr-icon;
 }
+textarea {
+	::-webkit-resizer {
+		display: none;
+		background-color: $bg-color;
+	}
 
-::-webkit-resizer {
-	display: none;
-	background-color: $bg-color;
+	::-webkit-scrollbar {
+		cursor: pointer !important;
+	}
+
+	#style-2::-webkit-scrollbar-track {
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+		cursor: pointer !important;
+	}
+
+	#style-2::-webkit-scrollbar {
+		width: 12px;
+		cursor: pointer !important;
+	}
+
+	#style-2::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		background-color: $clr-cta-hover;
+	}
 }
-
-::-webkit-scrollbar {
-	cursor: pointer !important;
+@media (max-width: 991px) {
 }
+@media (max-width: 767px) {
+	form {
+		width: 96%;
 
-#style-2::-webkit-scrollbar-track {
-	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		#form-post-btn {
+			font-size: 1.2rem !important;
+			width: 35%;
+			padding: auto;
+		}
+	}
+	card-header {
+		width: 10em;
+		margin: auto;
+		justify-content: space-between;
+		align-content: space-between;
+	}
+	.form-ctrl-l {
+		svg {
+			font-size: 1.7rem;
+		}
+	}
+	.form-ctrl-r {
+		height: inherit;
+		display: flex;
+		flex-direction: row;
+		align-content: center;
+		justify-content: flex-end;
 
-	cursor: pointer !important;
+		span {
+			margin: auto 0em;
+			font-size: 1rem !important;
+		}
+	}
 }
+.form-comment {
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-content: flex-end;
 
-#style-2::-webkit-scrollbar {
-	width: 12px;
-	cursor: pointer !important;
-}
-
-#style-2::-webkit-scrollbar-thumb {
-	border-radius: 10px;
-	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-	background-color: $clr-cta-hover;
+	texarea {
+		width: 100%;
+	}
 }

@@ -1,5 +1,6 @@
-.feed {
+.ctr-feed {
 	width: 38em;
+	min-width: 375px !important;
 	height: 100%;
 	margin: 0em 0em 0em 0em;
 	padding: 0em 0em 0em 0em;
@@ -29,6 +30,9 @@
 	margin: 0em 0em 0em 0em;
 	border-top: $border;
 }
+.container-post:hover {
+	background-color: $bg-color-active;
+}
 .post-left {
 	width: auto;
 	margin: 0em 0.6em 0em 0em;
@@ -40,6 +44,7 @@
 		height: 48px;
 		width: 48px;
 		border-radius: 9999px;
+		object-fit: cover !important;
 	}
 }
 .post-right {
@@ -50,6 +55,13 @@
 	a {
 		margin: 0em 0.6em 0em 0em;
 		padding: 0em 0em 0em 0em;
+		font-size: 1rem;
+	}
+	a:hover {
+		color: $clr-text;
+	}
+	span {
+		color: $clr-text;
 		font-size: 1rem;
 	}
 	h3,
@@ -69,19 +81,20 @@
 	}
 	.post-interactions {
 		display: flex;
-		justify-content: flex-start;
-		align-content: flex-end;
+		justify-content: space-evenly;
+		align-content: center;
 		margin: 1.2em 0em 0em 0em;
 		padding: 0em 0em 0em 0em;
+
 		.post-icon {
-			margin: 0em 0em 0em 1em;
-			padding: 0em 0em 0em 0em;
-			width: 1.6em;
+			margin: auto 0em auto 1em;
+			padding: auto 0em auto 0em;
+			font-size: 1.5rem !important;
 			color: $clr-icon;
 		}
 		.post-count {
-			margin: 0em 1em 0em 0.6em;
-			padding: 0em 0em 0em 0em;
+			margin: auto auto auto 0.6em;
+			padding: auto 0em auto 0em;
 			font-size: 1.2em;
 			color: $clr-icon;
 		}
@@ -105,7 +118,6 @@
 	border-bottom: $border;
 }
 .people-banner {
-	@extend .background-image;
 	background-size: cover;
 	background-position: center;
 	height: 10em;
@@ -121,7 +133,7 @@
 	border: 1px solid $bg-color;
 	width: 100px;
 	height: 100px;
-	object-fit: cover;
+	object-fit: cover !important;
 }
 .people-info {
 	width: auto;
@@ -130,8 +142,55 @@
 	margin: 0em 0em 0em 0em;
 	padding: 0em 1em 0em 1em;
 
-	h3,
+	.follow-btn,
+	.unfollow-btn {
+		width: 65%;
+		height: auto;
+		padding: 0.4em;
+		font-size: 1rem !important;
+		font-weight: bold;
+		border: none;
+		border-radius: 9999px;
+	}
+
+	.unfollow-btn {
+		width: 110px;
+		padding: auto;
+		border: 2px solid $clr-icon;
+		background-color: transparent;
+		color: $clr-text;
+		border-radius: 9999px;
+	}
+
+	.unfollow-btn:after {
+		content: 'Following';
+	}
+	.unfollow-btn:hover::after {
+		content: 'Unfollow';
+	}
+	.unfollow-btn:hover {
+		border: 2px solid $clr-alert;
+		color: $clr-alert;
+	}
+	.follow-btn {
+		width: 110px;
+		border: 2px solid $clr-cta;
+		background-color: transparent;
+		color: $clr-cta;
+		border-radius: 9999px;
+	}
+	.follow-btn::after {
+		content: 'Follow';
+	}
+	.follow-btn:hover {
+		color: $clr-cta-hover;
+		border-color: $clr-cta-hover;
+	}
+
+	h3 {
+	}
 	p {
+		font-size: 1.2rem;
 		margin: 0em 2vw 0em 0em;
 		padding: 0em 0em 0em 0em;
 	}
@@ -143,10 +202,12 @@
 		width: fit-content;
 	}
 	.people-info-right {
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		margin: 0.5em 0em 0.5em 0em;
 		padding: 0em 0em 0em 0em;
+		color: $clr-text;
 
 		.people-info-top {
 			width: 100%;
@@ -157,38 +218,202 @@
 		.people-info-bottom {
 			width: 100%;
 			display: flex;
+			height: 3em;
 			flex-direction: row;
-			justify-content: space-between;
+			align-content: center;
+			justify-content: flex-end;
 			margin: 0em 0em 0em 0em;
 			padding: 0em 0em 0em 0em;
 
 			p {
+				margin: auto 1em;
 				font-size: 1rem;
+				cursor: pointer;
+				color: $clr-text;
+			}
+			p:hover {
+				color: $clr-cta-hover;
+			}
+			#settings {
+				font-size: 2rem;
+				color: $clr-links;
+			}
+			#settings:hover {
+				color: $clr-cta-hover !important;
+			}
+			.people-link {
+				display: flex;
+				flex-direction: row;
+				margin: 0em 0em 0em 0em;
+				padding: 0em 0em 0em 0em;
 			}
 		}
 	}
 }
-.people-link {
+.ctr-reaction {
+	width: 100% !important;
 	display: flex;
 	flex-direction: row;
-	margin: 0em 0em 0em 0em;
-	padding: 0em 0em 0em 0em;
+	align-content: center;
+	justify-content: space-between;
+	padding: 0em;
+	margin: 0em;
+
+	.r-l {
+		width: auto !important;
+		margin: 0em !important;
+		padding: 0em !important;
+	}
+	.r-r {
+		flex-wrap: wrap;
+		width: auto !important;
+		margin: 0em !important;
+		padding: 0em !important;
+
+		span {
+			margin: 0em 0.5em 0em 0em !important;
+			padding: 0em !important;
+		}
+	}
+	.ctr-post {
+		color: $clr-text;
+	}
+	.ctr-comment {
+		p {
+			margin: 1em 0em 0em 0em !important;
+		}
+		.username {
+			color: $clr-text !important;
+		}
+		b {
+			color: $clr-text !important;
+		}
+	}
+}
+
+h3,
+p {
+	color: $clr-text !important;
+}
+.comment-avatar {
+	@extend .post-left, .post-avatar;
+}
+.comment {
+	border: $border;
+	margin: 1em auto;
+	padding: 1em;
+	border-radius: 20px;
+
+	.username {
+		color: $clr-text;
+	}
+	.user-comment {
+		color: $clr-text;
+		font-size: 1rem;
+		word-break: normal !important;
+	}
+	.comment-r-top {
+		display: flex;
+		flex-wrap: wrap;
+		align-content: center;
+		margin: auto;
+		padding: auto;
+	}
+	.comment-r-bottom {
+	}
+}
+
+#form-reaction {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-content: center;
+	font-size: 1rem;
+	height: 3em;
+
+	button {
+		width: 2em;
+		background-color: transparent;
+		border: none;
+		font-size: 1.6rem;
+		border-radius: 9999px;
+	}
+	button:hover {
+		padding-bottom: 2em;
+		background-color: $clr-cta-hover;
+	}
+}
+
+.comment-left,
+.comment-avatar {
+	@extend .post-left, .post-avatar;
+	margin: 0em 0.4em 0em 0em !important;
 }
 
 @media (max-width: 991px) {
-	.feed {
-		color: red;
-	}
 }
-
-@media (max-width: 655px) {
-	.feed {
-		color: green;
+@media (max-width: 767px) {
+	h3 {
+		font-size: 1.1rem !important;
+		font-weight: 600;
 	}
-}
 
-@media (max-width: 486px) {
-	.feed {
-		color: blue;
+	p,
+	b,
+	span {
+		font-size: 1rem !important;
+	}
+	.ctr-feed {
+		width: 100% !important;
+		border-left: none !important;
+		border-right: none !important;
+		margin-bottom: 3em !important;
+	}
+
+	.post-interactions {
+		display: flex;
+		justify-content: flex-start;
+		align-content: flex-end;
+		margin: 1.2em 0em 0em 0em;
+		padding: 0em 0em 0em 0em;
+		.post-icon {
+			margin: 0em 0em 0em 1em;
+			padding: 0em 0em 0em 0em;
+			width: 1.6em;
+			color: $clr-icon;
+		}
+		.post-count {
+			margin: 0em 1em 0em 0.6em;
+			padding: 0em 0em 0em 0em;
+			font-size: 1.2em;
+			color: $clr-icon;
+		}
+	}
+	.container-post {
+		padding: 0.8em 1em 1em 0.5em;
+	}
+
+	.people-info {
+		margin: auto;
+		padding: 0.5em 0.5em;
+
+		.people-info-bottom {
+			margin: 0em !important;
+			padding: 0em !important;
+			justify-content: space-evenly !important;
+			align-content: center !important;
+			height: auto;
+
+			p {
+				font-size: 0.9rem !important;
+				margin: auto 0.5em auto 0em !important;
+			}
+			p:hover {
+				color: $clr-cta-hover;
+			}
+			#settings {
+				font-size: 1.5rem !important;
+			}
+		}
 	}
 }

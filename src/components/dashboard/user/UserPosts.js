@@ -5,12 +5,13 @@ import { useParams, Link } from 'react-router-dom';
 import DeletePost from './DeletePost';
 import Avatar from '../../common/DefaultAvatar';
 import PostMedia from '../../common/PostMedia';
-import { PencilSquareIcon } from '@heroicons/react/24/outline';
+import { ChatBubbleBottomCenterIcon, HeartIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
 import Loading from '../../common/LoadingIndicator';
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import ModalVertical from '../../common/ModalVertical';
 import UpdatePost from './UpdatePost';
+import useStore from '../../../context/PostContext';
 
 export default function UserPosts() {
 	const [error, setError] = useState(null);
@@ -18,6 +19,7 @@ export default function UserPosts() {
 	const [profile, setProfile] = useState([]);
 	const [modalShow, setModalShow] = useState(false);
 	const [modalData, setModalData] = useState({});
+	const [followers, setFollowers] = useState();
 	document.title = `${profile.name} | Howler`;
 
 	let { name } = useParams();
@@ -39,6 +41,10 @@ export default function UserPosts() {
 		getProfile();
 		// eslint-disable-next-line
 	}, []);
+
+	const { state } = useStore();
+
+	console.log('state', state);
 
 	if (loading) {
 		return <Loading />;

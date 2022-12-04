@@ -1,4 +1,3 @@
-import Heading from '../../layout/Heading';
 import { useState, useEffect } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import ErrorMessage from '../../common/ErrorMessage';
@@ -63,66 +62,66 @@ export default function UserProfile() {
 
 	return (
 		<>
-			<div className="container post-list-container">
-				<Row className="row-post-list">
-					<div className="container post-list-container">
-						<Banner image={profile.banner} class={'user-profile-banner'} />
-						<Avatar image={profile.avatar} class={'user-avatar'} alt={profile.name} />
-						<div className="user-info-container d-flex">
-							<div className="px-3 flex-grow-1">
-								<Heading title={'@' + profile.name} />
-								<span className="text-muted">{profile.email}</span>
+			<div className="ctr-profile">
+				<div key={profile.id} className="container-people">
+					<Banner image={profile.banner} class={'people-banner'} />
+					<div className="people-info">
+						<div className="people-info-left">
+							<Avatar image={profile.avatar} class={'people-avatar'} alt={profile.name} />
+						</div>
+						<div className="people-info-right">
+							<div className="people-info-top">
+								<h3>{'@' + profile.name}</h3>
+								<p className="text-muted">{profile.email}</p>
 							</div>
-							<div className="d-flex flex-grow-1 justify-content-end gap-2 text-center align-self-end">
-								<div onClick={showFollowers} className="follow-feed">
-									<span className="d-block count-follow-text">{profile._count.followers} Followers</span>
-								</div>
-								<div onClick={showFollowing} className="follow-feed">
-									<span className="d-block count-follow-text">{profile._count.following} Following</span>
-								</div>
-								<div className="justify-content-end align-self-start">
-									<Dropdown />
-								</div>
+							<div className="people-info-bottom">
+								<p onClick={showFollowing}>Following {profile._count.following}</p>
+								<p onClick={showFollowers}>Followers {profile._count.followers}</p>
+								<Dropdown />
 							</div>
 						</div>
-						<Row className="user-content">
-							<div className="d-none posts-container followers-container">
-								<button onClick={showFollowers}>X</button>
-								<h3 className="text-center">Followers</h3>
-								{profile.followers.map((follow) => {
-									return (
-										<Link to={`/u/${follow.name}`} key={follow.name}>
-											<div className="followCard">
-												<Avatar image={follow.avatar} class={'following-avatar'} />
-												<div>@{follow.name}</div>
-											</div>
-										</Link>
-									);
-								})}
-							</div>
-							<div className="d-none posts-container following-container">
-								<button onClick={showFollowing}>X</button>
-								<h3 className="text-center">Following</h3>
-								{profile.following.map((follow) => {
-									//console.log(follow.followers);
-									//console.log(profile.followers);
-									return (
-										<Link to={`/u/${follow.name}`} key={follow.name}>
-											<div className="followCard" style={{ backgroundImage: `url(${follow.Banner})` }}>
-												<Avatar image={follow.avatar} class={'following-avatar'} />
-												<h4>@{follow.name}</h4>
-											</div>
-										</Link>
-									);
-								})}
-							</div>
-						</Row>
-						<UserPosts />
-						<ModalVertical show={modalShow} onHide={() => setModalShow(false)} heading="Update post">
-							<UpdateForm id={modalData.id} title={modalData.title} body={modalData.body} />
-						</ModalVertical>
+					</div>
+					<ModalVertical show={modalShow} onHide={() => setModalShow(false)} heading="Update post">
+						<UpdateForm id={modalData.id} title={modalData.title} body={modalData.body} />
+					</ModalVertical>
+				</div>
+
+				<Row className="user-content">
+					<div className="d-none posts-container followers-container">
+						<button onClick={showFollowers}>X</button>
+						<h3 className="text-center">Followers</h3>
+						{profile.followers.map((follow) => {
+							return (
+								<Link to={`/u/${follow.name}`} key={follow.name}>
+									<div className="followCard">
+										<Avatar image={follow.avatar} class={'following-avatar'} />
+										<div>@{follow.name}</div>
+									</div>
+								</Link>
+							);
+						})}
+					</div>
+					<div className="d-none posts-container following-container">
+						<button onClick={showFollowing}>X</button>
+						<h3 className="text-center">Following</h3>
+						{profile.following.map((follow) => {
+							//console.log(follow.followers);
+							//console.log(profile.followers);
+							return (
+								<Link to={`/u/${follow.name}`} key={follow.name}>
+									<div className="followCard" style={{ backgroundImage: `url(${follow.Banner})` }}>
+										<Avatar image={follow.avatar} class={'following-avatar'} />
+										<h4>@{follow.name}</h4>
+									</div>
+								</Link>
+							);
+						})}
 					</div>
 				</Row>
+				<UserPosts />
+				<ModalVertical show={modalShow} onHide={() => setModalShow(false)} heading="Update post">
+					<UpdateForm id={modalData.id} title={modalData.title} body={modalData.body} />
+				</ModalVertical>
 			</div>
 		</>
 	);

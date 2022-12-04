@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Space+Grotesk&family=Ubuntu&display=swap');
+
+// Variables
+$txt-big: 'Roboto', sans-serif;
+$txt-normal: 'Space Grotesk', sans-serif;
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: $txt-big;
+}
+span,
+p {
+	font-family: $txt-normal;
+}
