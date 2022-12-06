@@ -28,7 +28,7 @@ export const PostProvider = ({ children }) => {
 					const json = await response.json();
 					setPosts(json);
 				} else {
-					setError('There was an error during the API request');
+					setError('There was an error during the request');
 				}
 			} catch (error) {
 				setError(error);

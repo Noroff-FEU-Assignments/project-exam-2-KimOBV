@@ -22,11 +22,8 @@ export default function UpdateBanner({ name }) {
 	}
 	return (
 		<form onSubmit={handleSubmit(updateBanner)}>
-			<div>
-				<label htmlFor="banner">Banner URL:</label>
-				<input {...register('banner')} id="banner" />
-			</div>
-			<button className="cta">Update</button>
+			<input {...register('banner')} placeholder="http://BannerURLGoesHere.com" id="banner" />
+			<button className="cta btn-primary">Update</button>
 		</form>
 	);
 }

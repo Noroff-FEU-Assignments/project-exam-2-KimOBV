@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Loading from '../../common/LoadingIndicator';
 import useLocalStorage from '../../../hooks/useLocalStorage';
 import UserPosts from '../user/UserPosts';
+import React from 'react';
 
 export default function ProfileDetails() {
 	const [error, setError] = useState(null);

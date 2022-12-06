@@ -1,66 +1,50 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useParams } from 'react-router-dom';
 import useAxios from '../../../hooks/useAxios';
-import useStore from '../../../context/PostContext';
-import ErrorMessage from '../../common/ErrorMessage';
-import PostDetails from './PostDetails';
+import React from 'react';
 
-const schema = yup.object().shape({
-	symbol: yup.string().required('Please select a symbol'),
-});
-
-export default function ReactPost() {
-	let { id } = useParams();
-	const [, setSubmitting] = useState(false);
-	const [error, setError] = useState(null);
-	const [emoji, setEmoji] = useState();
-	const { addReaction } = useStore();
-
-	const { register, reset, handleSubmit } = useForm({ resolver: yupResolver(schema) });
-
+export default function ReactPost({ setReactions, reactions, post }) {
+	//console.log(post);
 	const http = useAxios();
+	const [, setIsSubmitting] = React.useState(false);
 
-	let symbol = emoji;
+	const setEmoji = async (event) => {
+		const symbol = event.target.dataset.symbol;
 
-	async function submitReaction() {
-		reset();
+		const findReaction = reactions.find((reaction) => reaction.symbol === symbol);
+		setIsSubmitting(true);
 		try {
-			const response = await http.put(`posts/${id}/react/${symbol}`);
-			console.log('response', response);
-			if (response.status === 200 || response.status === 201) {
-				addReaction(response.data);
-				window.location.reload();
+			const response = await http.put(`posts/${post.details.id}/react/${symbol}`);
+			if (findReaction) {
+				const filterReactions = reactions.filter((reaction) => reaction.symbol !== findReaction.symbol);
+				setReactions([...filterReactions, response.data]);
+			} else {
+				setReactions((prevState) => [...prevState, response.data]);
 			}
 		} catch (error) {
-			setError(error.toString());
+			console.log(error);
 		} finally {
-			setSubmitting(false);
+			setIsSubmitting(false);
 		}
-	}
+	};
 
 	return (
 		<>
-			<form id="form-reaction" {...register('emoji')} onSubmit={handleSubmit(submitReaction)}>
-				<button type="submit" value="🍌" {...register('symbol')} onClick={(e) => setEmoji('🍌')}>
+			<div className="reaction">
+				<button data-symbol="🍌" onClick={setEmoji}>
 					🍌
 				</button>
-				<button type="submit" value="🙈" {...register('symbol')} onClick={(e) => setEmoji('🙈')}>
-					🙈
-				</button>
-				<button type="submit" value="🙉" {...register('symbol')} onClick={(e) => setEmoji('🙉')}>
-					🙉
-				</button>
-				<button type="submit" value="🙊" {...register('symbol')} onClick={(e) => setEmoji('🙊')}>
-					🙊
-				</button>
-				<button type="submit" value="❤️" {...register('symbol')} onClick={(e) => setEmoji('❤️')}>
+				<button data-symbol="❤️" onClick={setEmoji}>
 					❤️
 				</button>
-			</form>
-			{error && <ErrorMessage>{error}</ErrorMessage>}
+				<button data-symbol="🙈" onClick={setEmoji}>
+					🙈
+				</button>
+				<button data-symbol="🙉" onClick={setEmoji}>
+					🙉
+				</button>
+				<button data-symbol="🙊" onClick={setEmoji}>
+					🙊
+				</button>
+			</div>
 		</>
 	);
 }

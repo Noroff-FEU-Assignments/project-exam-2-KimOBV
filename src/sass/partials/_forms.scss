@@ -144,9 +144,14 @@ textarea {
 	max-width: 100%;
 	display: flex;
 	flex-direction: column;
-	align-content: flex-end;
 
 	texarea {
 		width: 100%;
+	}
+	.comment-btn {
+		padding: 0.5em 1em;
+		width: fit-content;
+		margin-bottom: 1em;
+		margin: auto;
 	}
 }

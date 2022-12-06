@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import PostMedia from '../../common/PostMedia';
-import { ChatBubbleBottomCenterTextIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import ErrorMessage from '../../common/ErrorMessage';
 import Avatar from '../../common/DefaultAvatar';
 import Loading from '../../common/LoadingIndicator';
+import Reactions from '../posts/Reactions';
 
 export default function GetFeedHome() {
 	const [followers, setFollowers] = useState();
@@ -41,14 +42,14 @@ export default function GetFeedHome() {
 	}
 
 	if (followers.length === 0) {
-		return <div>You are not following anyone yet!</div>; //update this with link and styling
+		return <div>You are not following anyone yet!</div>;
 	}
 
 	return (
 		<>
 			<div className="container-posts">
 				{followers.map((post) => {
-					console.log(post);
+					//console.log(post);
 					return (
 						<div key={post.id} className="container-post">
 							<div className="post-left">
@@ -65,15 +66,12 @@ export default function GetFeedHome() {
 									<h3>{post.title}</h3>
 									<p>{post.body}</p>
 									<PostMedia image={post.media} onError={(e) => (e.target.style.display = 'none')} />
-									<div className="post-interactions">
-										<div className="comment-tag">
+									<div className="ctr-reaction">
+										<div className="r-l">
 											<ChatBubbleBottomCenterTextIcon className="icon post-icon" />
-											<span className="post-count">{post._count.comments}</span>
+											<span className="post-count">{post.comments.length}</span>
 										</div>
-										<div className="reaction-tag">
-											<HeartIcon className="icon post-icon" />
-											<span className="post-count">{post._count.reactions}</span>
-										</div>
+										<Reactions reactions={post.reactions} />
 									</div>
 								</Link>
 							</div>

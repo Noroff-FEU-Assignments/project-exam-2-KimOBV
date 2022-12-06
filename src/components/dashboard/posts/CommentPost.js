@@ -59,7 +59,7 @@ export default function CommentOnPost() {
 				<textarea id="message" {...register('message')} className="comment-textarea w-100" rows={6}></textarea>
 				{errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
 			</div>
-			<button className="btn btn-primary btn btn-primary">Send</button>
+			<button className="btn btn-primary comment-btn">Comment</button>
 		</form>
 	);
 }

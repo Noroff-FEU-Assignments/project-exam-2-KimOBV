@@ -25,7 +25,7 @@ export default function CreatePost() {
 	const { state, addPost } = useStore();
 	const [characterCount, setCharacterCount] = useState(0);
 
-	console.log('posts', state);
+	//console.log('posts', state);
 
 	const {
 		register,
@@ -60,7 +60,6 @@ export default function CreatePost() {
 		setSubmitting(true);
 		setPostError(null);
 		setMessage('Post submitted');
-		reset();
 
 		const title = data.title;
 		const message = data.body;
@@ -77,6 +76,8 @@ export default function CreatePost() {
 			console.log(response.data);
 			if (response.status === 200 || response.status === 201) {
 				addPost(response.data);
+				reset();
+				CreatePost.reset();
 			}
 		} catch (error) {
 			console.log('error', error);

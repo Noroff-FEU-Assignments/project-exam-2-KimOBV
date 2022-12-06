@@ -66,6 +66,29 @@
 	}
 }
 
+#popover-edit-post {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: space-evenly;
+	width: 14em;
+	height: 14em;
+	background-color: $bg-color;
+	border: $border;
+	border-radius: 25px;
+	padding: auto;
+
+	h3 {
+		margin: 0.4em auto auto auto;
+	}
+
+	button {
+		@extend .btn-primary;
+		color: $clr-text;
+		margin: auto;
+	}
+}
+
 .ctr-feed {
 	min-height: 100vh;
 	height: 100%;

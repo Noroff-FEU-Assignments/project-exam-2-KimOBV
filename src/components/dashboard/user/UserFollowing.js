@@ -14,7 +14,6 @@ export default function UserFollowing({ followers, following }) {
 	return (
 		<div className="user-follow-container">
 			<div className="d-flex align-items-end gap-2">
-				<Heading size={2} title="ToAd's" />
 				<span onClick={() => setToggle(!toggle)}>{toggle === true ? <EyeSlashIcon className="icon" /> : <EyeIcon className="icon" />}</span>
 			</div>
 			{toggle && (

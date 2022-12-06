@@ -1,0 +1,102 @@
+.modal-content {
+	background-color: $bg-color;
+	border: $border;
+	color: $clr-text;
+	border-radius: 25px;
+	max-width: 38em;
+	margin: auto;
+
+	.modal-body {
+		padding: 0em !important;
+		border-radius: 0px 0px 25px 25px !important;
+	}
+
+	#form-update-post {
+		height: fit-content;
+		display: flex;
+		flex-direction: column;
+		align-content: flex-start;
+		background-color: $bg-color-active;
+		border-radius: 0px 0px 25px 25px !important;
+		margin: 0em auto;
+
+		.div-body {
+			display: flex;
+			height: 100%;
+		}
+		div:nth-child(3) {
+			display: flex;
+			flex-direction: column;
+		}
+
+		label {
+			padding: auto;
+			width: 20%;
+		}
+
+		input,
+		textarea {
+			border-radius: 25px;
+			width: 70%;
+			height: 100%;
+			margin: 0em 1em 0em 0em;
+			padding: auto !important;
+			border: none;
+			border-bottom: $border;
+		}
+		img {
+			@extend .post-right;
+			border-radius: 25px;
+			margin: auto;
+			padding: auto 4em;
+			width: 80%;
+		}
+		button {
+			@extend .btn-primary;
+			margin-bottom: 1.5em;
+			width: 6em;
+		}
+	}
+	#form-update-post > div {
+		margin: 1em;
+	}
+
+	.modal-body {
+		padding: 2em;
+	}
+
+	form {
+		display: flex;
+		flex-direction: row;
+		align-content: center;
+		margin: auto;
+		width: 100%;
+		padding: auto;
+		height: 3em;
+	}
+	input {
+		border-radius: 25px 0px 0px 25px;
+		width: 70%;
+		height: 100%;
+		margin: 0em;
+		padding: auto 2em !important;
+		border: 2px solid $clr-cta;
+	}
+
+	.btn-close {
+		width: 2em;
+		height: 2em;
+		border-radius: 50%;
+		background-color: $clr-links;
+	}
+
+	button {
+		border-radius: 0px 25px 25px 0px;
+		border: none;
+		color: $clr-text;
+		width: 30%;
+		height: 100%;
+		margin: auto;
+		padding: auto;
+	}
+}

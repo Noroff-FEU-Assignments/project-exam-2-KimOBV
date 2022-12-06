@@ -30,14 +30,14 @@ function App() {
 										<Routes>
 											<Route path="/" exact element={<Landing />} />
 											<Route path="/register" exact element={<Register />} />
-											<Route path="/user/:name" element={<UserProfilePage />} />
 											<Route path="/home" element={<HomeFeed />} />
 											<Route path="/explore" element={<PageExplore />} />
-											<Route path="/posts/:id" element={<PostDetails />} />
 											<Route path="/people" element={<ProfilesPage />} />
+											<Route path="/posts/:id" element={<PostDetails />} />
+											<Route path="/user/:name" element={<UserProfilePage />} />
 											<Route path="/u/:name" element={<ProfileDetails />} />
 											<Route path="/new-post" element={<CreatePost />} />
-											<Route path="*" element={<Landing />} />
+											<Route path="*" element={<HomeFeed />} />
 										</Routes>
 									</Col>
 									<Col md={3} responsive="md" className="ctr-sidebar"></Col>

@@ -17,6 +17,7 @@ export default function UserProfile() {
 	const [profile, setProfile] = useState([]);
 	const [modalShow, setModalShow] = useState(false);
 	const [modalData, setModalData] = useState({});
+
 	document.title = `${profile.name} | Howler`;
 
 	let { name } = useParams();
@@ -26,7 +27,7 @@ export default function UserProfile() {
 	useEffect(() => {
 		async function getProfile() {
 			try {
-				const response = await http.get(`profiles/${name}?_posts=true&_following=true&_followers=true`);
+				const response = await http.get(`profiles/${name}?_following=true&_followers=true`);
 				//console.log(response.data);
 				setProfile(response.data);
 			} catch (error) {

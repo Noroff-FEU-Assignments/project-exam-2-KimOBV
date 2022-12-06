@@ -31,7 +31,7 @@ export default function NavLayout() {
 					<>
 						<div className="ctr-nav-top">
 							<div className="ctr-logo">
-								<NavLink onClick="reloadCurrent()" className="ctr-logo">
+								<NavLink to="/home" className="ctr-logo">
 									<img className="logo-img" src={logo} alt="Howler monkey" />
 								</NavLink>
 							</div>

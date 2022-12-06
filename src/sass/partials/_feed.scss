@@ -36,7 +36,7 @@
 .post-left {
 	width: auto;
 	margin: 0em 0.6em 0em 0em;
-	padding: 0em 0em 0em 0em;
+	padding: 0em 0em 1.5em 0em;
 	.post-avatar {
 		position: relative;
 		top: 0em;
@@ -52,10 +52,20 @@
 	margin: 0em 0em 0em 0em;
 	padding: 0em 0em 0em 0em;
 
+	#post-r-top {
+		display: flex;
+		align-content: center;
+		justify-content: space-between;
+	}
+
 	a {
-		margin: 0em 0.6em 0em 0em;
+		margin: auto 0.6em auto 0em;
 		padding: 0em 0em 0em 0em;
 		font-size: 1rem;
+		vertical-align: middle;
+	}
+	#settings {
+		font-size: 1.5rem !important;
 	}
 	a:hover {
 		color: $clr-text;
@@ -72,7 +82,7 @@
 		font-size: 1.1rem;
 	}
 	img {
-		margin: 0em 1em 0em 0em;
+		margin: 0em 1em 1.5em 0em;
 		padding: 0em 0em 0em 0em;
 		width: 100%;
 		height: auto;
@@ -81,9 +91,9 @@
 	}
 	.post-interactions {
 		display: flex;
-		justify-content: space-evenly;
+		justify-content: space-between;
 		align-content: center;
-		margin: 1.2em 0em 0em 0em;
+		margin: 1.2em 2em 0em 0em;
 		padding: 0em 0em 0em 0em;
 
 		.post-icon {
@@ -235,7 +245,7 @@
 				color: $clr-cta-hover;
 			}
 			#settings {
-				font-size: 2rem;
+				font-size: 2rem !important;
 				color: $clr-links;
 			}
 			#settings:hover {
@@ -255,38 +265,40 @@
 	display: flex;
 	flex-direction: row;
 	align-content: center;
-	justify-content: space-between;
-	padding: 0em;
-	margin: 0em;
+	justify-content: flex-end;
 
 	.r-l {
-		width: auto !important;
-		margin: 0em !important;
-		padding: 0em !important;
+		margin: auto;
+		width: 20%;
+		font-size: 1.6rem !important;
+		span {
+			font-size: 1.5rem !important;
+		}
 	}
 	.r-r {
+		max-height: 4rem;
+		margin: auto 0em auto auto;
+		width: 80%;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
 		flex-wrap: wrap;
-		width: auto !important;
-		margin: 0em !important;
-		padding: 0em !important;
+		font-size: 1.2rem !important;
 
+		p {
+			font-size: 1.2rem !important;
+		}
 		span {
-			margin: 0em 0.5em 0em 0em !important;
-			padding: 0em !important;
+			margin: auto 0em auto auto;
+			font-size: 1.2rem !important;
 		}
 	}
 	.ctr-post {
-		color: $clr-text;
 	}
 	.ctr-comment {
 		p {
-			margin: 1em 0em 0em 0em !important;
 		}
 		.username {
-			color: $clr-text !important;
-		}
-		b {
-			color: $clr-text !important;
 		}
 	}
 }
@@ -323,24 +335,32 @@ p {
 	}
 }
 
-#form-reaction {
+.reaction {
+	background-color: $bg-color-active;
+	border-radius: 50px;
+	padding: 1em;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-content: center;
 	font-size: 1rem;
-	height: 3em;
+	height: fit-content;
+	margin: 0em 1.5em 1em 1.5em;
 
 	button {
 		width: 2em;
+		height: 2em;
 		background-color: transparent;
-		border: none;
-		font-size: 1.6rem;
+		border: $border;
+		font-size: 1.5rem;
 		border-radius: 9999px;
 	}
 	button:hover {
-		padding-bottom: 2em;
-		background-color: $clr-cta-hover;
+		padding-bottom: 1.8em;
+		border: 2px solid $clr-cta;
+	}
+	button:active {
+		background-color: $clr-cta;
 	}
 }
 
@@ -353,6 +373,42 @@ p {
 @media (max-width: 991px) {
 }
 @media (max-width: 767px) {
+	.ctr-reaction {
+		width: 100% !important;
+		display: flex;
+		flex-direction: row;
+		align-content: center;
+		justify-content: space-between;
+		padding: 0em;
+		margin: 0em;
+
+		.r-l {
+			width: 20%;
+			font-size: 1.4rem !important;
+			span {
+				font-size: 1.1rem !important;
+			}
+		}
+		.r-r {
+			width: 80%;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			font-size: 1.4rem !important;
+			span {
+				font-size: 1.1rem !important;
+			}
+		}
+		.ctr-post {
+		}
+		.ctr-comment {
+			p {
+			}
+			.username {
+			}
+		}
+	}
+
 	h3 {
 		font-size: 1.1rem !important;
 		font-weight: 600;
@@ -412,7 +468,7 @@ p {
 				color: $clr-cta-hover;
 			}
 			#settings {
-				font-size: 1.5rem !important;
+				font-size: 2rem !important;
 			}
 		}
 	}

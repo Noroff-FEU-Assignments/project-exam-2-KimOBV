@@ -4,7 +4,6 @@ import ErrorMessage from '../../common/ErrorMessage';
 import { Link } from 'react-router-dom';
 import Avatar from '../../common/DefaultAvatar';
 import Banner from '../../common/DefaultBanner';
-import Heading from '../../layout/Heading';
 
 export default function ProfilesList() {
 	const [error, setError] = useState(null);
@@ -17,7 +16,7 @@ export default function ProfilesList() {
 		async function getProfiles() {
 			try {
 				const response = await http.get('profiles/');
-				console.log('response', response);
+				//console.log('response', response);
 				setProfiles(response.data);
 			} catch (error) {
 				setError(error.toString());
@@ -34,10 +33,10 @@ export default function ProfilesList() {
 	return (
 		<>
 			<div className="container-peoples">
-				{profiles.map((profile) => {
-					console.log(profile);
+				{profiles.map((profile, index) => {
+					//console.log(profile);
 					return (
-						<div key={profile.id} className="container-people">
+						<div key={index} className="container-people">
 							<Banner image={profile.banner} class={'people-banner'} />
 							<Link className="people-link" to={`/u/${profile.name}`}>
 								<div className="people-info">

@@ -5,13 +5,14 @@ import { useParams, Link } from 'react-router-dom';
 import DeletePost from './DeletePost';
 import Avatar from '../../common/DefaultAvatar';
 import PostMedia from '../../common/PostMedia';
-import { ChatBubbleBottomCenterIcon, HeartIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
+import { ChatBubbleBottomCenterTextIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
 import Loading from '../../common/LoadingIndicator';
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import ModalVertical from '../../common/ModalVertical';
 import UpdatePost from './UpdatePost';
-import useStore from '../../../context/PostContext';
+import Reactions from '../posts/Reactions';
+import React from 'react';
 
 export default function UserPosts() {
 	const [error, setError] = useState(null);
@@ -19,18 +20,18 @@ export default function UserPosts() {
 	const [profile, setProfile] = useState([]);
 	const [modalShow, setModalShow] = useState(false);
 	const [modalData, setModalData] = useState({});
-	const [followers, setFollowers] = useState();
-	document.title = `${profile.name} | Howler`;
 
 	let { name } = useParams();
+
+	//console.log(name);
 
 	const http = useAxios();
 
 	useEffect(() => {
 		async function getProfile() {
 			try {
-				const response = await http.get(`profiles/${name}?_posts=true&_following=true&_followers=true`);
-				//console.log(response.data);
+				const response = await http.get(`profiles/${name}/posts/?_author=true&?_comments=true&_reactions=true`);
+				//const stats = await http.get(`posts/${}?_author=true&_comments=true&_reactions=true`);
 				setProfile(response.data);
 			} catch (error) {
 				setError(error.toString());
@@ -42,10 +43,6 @@ export default function UserPosts() {
 		// eslint-disable-next-line
 	}, []);
 
-	const { state } = useStore();
-
-	console.log('state', state);
-
 	if (loading) {
 		return <Loading />;
 	}
@@ -53,29 +50,30 @@ export default function UserPosts() {
 	if (error) {
 		return <ErrorMessage />;
 	}
-
+	//console.log(stats);
 	return (
 		<>
 			<div className="container-posts">
-				{profile.posts.map((post, index) => {
-					console.log(post);
+				{profile.map((post, index) => {
+					//console.log(post);
 					return (
 						<div key={index} className="container-post">
 							<div className="post-left">
-								<Avatar image={profile.avatar} class={'post-avatar'} />
+								<Avatar image={post.author.avatar} class={'post-avatar'} />
 							</div>
 							<div className="post-right">
-								<Link to={`/u/${profile.name}`}>
-									<b>@{profile.name}</b> · {moment(post.created).fromNow()}
-								</Link>
-								<OverlayTrigger
-									className="icon icon-nav-mob"
-									trigger="click"
-									rootClose="true"
-									placement="top"
-									overlay={
-										<Popover id={`popover`}>
-											<div className="d-flex gap-5">
+								<div id="post-r-top">
+									<Link to={`/u/${post.author.name}`}>
+										<b>{post.author.name}</b> · {moment(post.created).fromNow()}
+									</Link>
+									<OverlayTrigger
+										className="icon icon-nav-mob"
+										trigger="click"
+										rootClose="true"
+										placement="left"
+										overlay={
+											<Popover id={`popover-edit-post`}>
+												<h3>Edit Post?</h3>
 												<Button
 													className="cta-secondary"
 													onClick={() => {
@@ -87,18 +85,25 @@ export default function UserPosts() {
 													Update
 												</Button>
 												<DeletePost id={post.id} />
-											</div>
-										</Popover>
-									}
-								>
-									<Link className="settings" variant="link">
-										<PencilSquareIcon className="settings" />
-									</Link>
-								</OverlayTrigger>
+											</Popover>
+										}
+									>
+										<Link id="settings" variant="link">
+											<PencilSquareIcon id="settings" />
+										</Link>
+									</OverlayTrigger>
+								</div>
 								<Link to={`/posts/${post.id}`} className="post-cta">
 									<h3>{post.title}</h3>
 									<p>{post.body}</p>
 									<PostMedia image={post.media} />
+									<div className="ctr-reaction">
+										<div className="r-l">
+											<ChatBubbleBottomCenterTextIcon className="icon post-icon" />
+											<span className="post-count">{post._count.comments}</span>
+										</div>
+										<Reactions reactions={post.reactions} />
+									</div>
 								</Link>
 							</div>
 						</div>
