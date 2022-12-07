@@ -22,7 +22,7 @@ export default function CreatePost() {
 	const [, setSubmitting] = useState(false);
 	const [postError, setPostError] = useState(null);
 	const [message, setMessage] = useState('');
-	const { , addPost } = useStore();
+	const { addPost } = useStore();
 	const [characterCount, setCharacterCount] = useState(0);
 
 	//console.log('posts', state);
