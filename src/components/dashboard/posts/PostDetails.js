@@ -54,13 +54,12 @@ export default function PostDetails(post) {
 	}, [url]);
 
 	if (loading) {
-		return <div>Loading...</div>; //add loading indicator
+		return <div>Loading...</div>;
 	}
 
 	if (error) {
 		return <div>Error: An error occurred with the API call</div>; //add error component
 	}
-	//console.log('details', state.details);
 
 	const ppl = state.details.author.name;
 	const t1 = `/u/`;
@@ -97,6 +96,7 @@ export default function PostDetails(post) {
 						<CommentPost />
 						<div className="ctr-comment">
 							{state.comments.map((comment) => {
+								console.log(comment);
 								const ppl = comment.author.name;
 								const test = ppl !== '' && ppl !== auth.name ? t1 : t2;
 								return (
