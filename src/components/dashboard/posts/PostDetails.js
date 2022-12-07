@@ -9,7 +9,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { useStore } from '../../../context/PostContext';
 import { ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline';
-import Avatar from '../../common/DefaultAvatar';
+import Avatar from '../../common/AvatarMissing';
 import moment from 'moment';
 
 export default function PostDetails(post) {
@@ -54,7 +54,7 @@ export default function PostDetails(post) {
 	}, [url]);
 
 	if (loading) {
-		return <div>Loading...</div>;
+		return <div>Loading...</div>; //add loading indicator
 	}
 
 	if (error) {
@@ -96,7 +96,6 @@ export default function PostDetails(post) {
 						<CommentPost />
 						<div className="ctr-comment">
 							{state.comments.map((comment) => {
-								console.log(comment);
 								const ppl = comment.author.name;
 								const test = ppl !== '' && ppl !== auth.name ? t1 : t2;
 								return (

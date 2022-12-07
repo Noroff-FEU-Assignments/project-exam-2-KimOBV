@@ -1,5 +1,5 @@
-import UpdateBanner from '../user/UpdateBanner';
-import UpdateAvatar from '../user/UpdateAvatar';
+import UpdateBanner from '../user/BannerUpdate';
+import UpdateAvatar from '../user/AvatarUpdate';
 import ModalVertical from '../../common/ModalVertical';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';

@@ -1,6 +1,6 @@
 import { Container, Col, Row } from 'react-bootstrap';
-import RegisterForm from '../login/RegisterForm';
 import { Link } from 'react-router-dom';
+import RegisterForm from '../login/FormRegister';
 
 export default function Register() {
 	return (

@@ -6,6 +6,15 @@ export default function ReactPost({ setReactions, reactions, post }) {
 	const http = useAxios();
 	const [, setIsSubmitting] = React.useState(false);
 
+	const handleClick = (e) => {
+		let test = e.currentTarget;
+		test.disabled = true;
+		setEmoji(e);
+		setTimeout(() => {
+			test.disabled = false;
+		}, 6000);
+	};
+
 	const setEmoji = async (event) => {
 		const symbol = event.target.dataset.symbol;
 
@@ -29,19 +38,44 @@ export default function ReactPost({ setReactions, reactions, post }) {
 	return (
 		<>
 			<div className="reaction">
-				<button data-symbol="🍌" onClick={setEmoji}>
+				<button
+					data-symbol="🍌"
+					onClick={(e) => {
+						handleClick(e);
+					}}
+				>
 					🍌
 				</button>
-				<button data-symbol="❤️" onClick={setEmoji}>
+				<button
+					data-symbol="❤️"
+					onClick={(e) => {
+						handleClick(e);
+					}}
+				>
 					❤️
 				</button>
-				<button data-symbol="🙈" onClick={setEmoji}>
+				<button
+					data-symbol="🙈"
+					onClick={(e) => {
+						handleClick(e);
+					}}
+				>
 					🙈
 				</button>
-				<button data-symbol="🙉" onClick={setEmoji}>
+				<button
+					data-symbol="🙉"
+					onClick={(e) => {
+						handleClick(e);
+					}}
+				>
 					🙉
 				</button>
-				<button data-symbol="🙊" onClick={setEmoji}>
+				<button
+					data-symbol="🙊"
+					onClick={(e) => {
+						handleClick(e);
+					}}
+				>
 					🙊
 				</button>
 			</div>

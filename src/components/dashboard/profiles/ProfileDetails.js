@@ -1,15 +1,13 @@
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { Unfollow, Follow } from './Follow';
-import { useState, useEffect } from 'react';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 import useAxios from '../../../hooks/useAxios';
 import ErrorMessage from '../../common/ErrorMessage';
-import { Link, useParams } from 'react-router-dom';
-import Banner from '../../common/DefaultBanner';
-import Avatar from '../../common/DefaultAvatar';
-import Row from 'react-bootstrap/Row';
-import Loading from '../../common/LoadingIndicator';
-import useLocalStorage from '../../../hooks/useLocalStorage';
+import Banner from '../../common/BannerMissing';
+import Avatar from '../../common/AvatarMissing';
+import Loading from '../../common/Loading';
 import UserPosts from '../user/UserPosts';
-import React from 'react';
 
 export default function ProfileDetails() {
 	const [error, setError] = useState(null);
@@ -54,20 +52,20 @@ export default function ProfileDetails() {
 		return <ErrorMessage>{error}</ErrorMessage>;
 	}
 
-	const isFollowing = followers.map((follow) => {
+	const Following = followers.map((follow) => {
 		return follow.name;
 	});
 
-	const iFollow = isFollowing.includes(auth.name);
+	const Follow = Following.includes(auth.name);
 
 	const postContainer = document.querySelector('.postContainer');
 
-	const showFollowers = () => {
+	const QtyFollowers = () => {
 		const followerContainer = document.querySelector('.followers-container');
 		followerContainer.classList.toggle('d-none');
 		postContainer.classList.toggle('d-none');
 	};
-	const showFollowing = () => {
+	const QtyFollowing = () => {
 		const followerContainer = document.querySelector('.following-container');
 		followerContainer.classList.toggle('d-none');
 		postContainer.classList.toggle('d-none');
@@ -88,17 +86,17 @@ export default function ProfileDetails() {
 								<p className="text-muted">{profile.email}</p>
 							</div>
 							<div className="people-info-bottom">
-								<p onClick={showFollowing}>Following {countFollowing}</p>
-								<p onClick={showFollowers}>Followers {countFollowers}</p>
-								<div>{iFollow ? <Unfollow follow={setFollowers} followers={followers} count={setCountFollowers} /> : <Follow follow={setFollowers} count={setCountFollowers} />}</div>
+								<p onClick={QtyFollowing}>Following {countFollowing}</p>
+								<p onClick={QtyFollowers}>Followers {countFollowers}</p>
+								<div>{Follow ? <Unfollow follow={setFollowers} followers={followers} count={setCountFollowers} /> : <Follow follow={setFollowers} count={setCountFollowers} />}</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<Row className="user-content">
+				<div className="user-content">
 					<div className="d-none posts-container followers-container">
-						<button onClick={showFollowers}>X</button>
+						<button onClick={QtyFollowers}>X</button>
 						<h3 className="text-center">Followers</h3>
 						{profile.followers.map((follow) => {
 							return (
@@ -112,11 +110,9 @@ export default function ProfileDetails() {
 						})}
 					</div>
 					<div className="d-none posts-container following-container">
-						<button onClick={showFollowing}>X</button>
+						<button onClick={QtyFollowing}>X</button>
 						<h3 className="text-center">Following</h3>
 						{profile.following.map((follow) => {
-							//console.log(follow.followers);
-							//console.log(profile.followers);
 							return (
 								<Link to={`/u/${follow.name}`} key={follow.name}>
 									<div className="followCard" style={{ backgroundImage: `url(${follow.Banner})` }}>
@@ -127,7 +123,7 @@ export default function ProfileDetails() {
 							);
 						})}
 					</div>
-				</Row>
+				</div>
 				<UserPosts />
 			</div>
 		</>

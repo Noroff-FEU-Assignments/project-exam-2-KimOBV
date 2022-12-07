@@ -45,7 +45,7 @@ export default function CommentOnPost() {
 				addComment(response.data);
 			}
 		} catch (error) {
-			//console.log('error', error);
+			console.log('error', error);
 			setPostError(error.toString());
 		} finally {
 			setSubmitting(false);
@@ -56,7 +56,7 @@ export default function CommentOnPost() {
 		<form onSubmit={handleSubmit(postComment)} className="form-comment">
 			{postError && <ErrorMessage>{postError}</ErrorMessage>}
 			<div>
-				<textarea id="message" {...register('message')} className="comment-textarea" rows={6}></textarea>
+				<textarea id="message" {...register('message')} className="comment-textarea w-100" rows={6}></textarea>
 				{errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
 			</div>
 			<button className="btn btn-primary comment-btn">Comment</button>

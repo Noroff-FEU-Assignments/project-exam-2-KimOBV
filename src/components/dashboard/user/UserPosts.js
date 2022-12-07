@@ -1,18 +1,17 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import useAxios from '../../../hooks/useAxios';
+import UpdatePost from './PostUpdate';
+import DeletePost from './PostDelete';
+import Reactions from '../posts/Reactions';
+import PostMedia from '../../common/PostMedia';
+import Avatar from '../../common/AvatarMissing';
+import ModalVertical from '../../common/ModalVertical';
+import Loading from '../../common/Loading';
 import ErrorMessage from '../../common/ErrorMessage';
 import { useParams, Link } from 'react-router-dom';
-import DeletePost from './DeletePost';
-import Avatar from '../../common/DefaultAvatar';
-import PostMedia from '../../common/PostMedia';
-import { ChatBubbleBottomCenterTextIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
-import moment from 'moment';
-import Loading from '../../common/LoadingIndicator';
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
-import ModalVertical from '../../common/ModalVertical';
-import UpdatePost from './UpdatePost';
-import Reactions from '../posts/Reactions';
-import React from 'react';
+import { ChatBubbleBottomCenterTextIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 
 export default function UserPosts() {
 	const [error, setError] = useState(null);
@@ -23,15 +22,12 @@ export default function UserPosts() {
 
 	let { name } = useParams();
 
-	//console.log(name);
-
 	const http = useAxios();
 
 	useEffect(() => {
 		async function getProfile() {
 			try {
 				const response = await http.get(`profiles/${name}/posts/?_author=true&?_comments=true&_reactions=true`);
-				//const stats = await http.get(`posts/${}?_author=true&_comments=true&_reactions=true`);
 				setProfile(response.data);
 			} catch (error) {
 				setError(error.toString());
@@ -50,12 +46,10 @@ export default function UserPosts() {
 	if (error) {
 		return <ErrorMessage />;
 	}
-	//console.log(stats);
 	return (
 		<>
 			<div className="container-posts">
 				{profile.map((post, index) => {
-					//console.log(post);
 					return (
 						<div key={index} className="container-post">
 							<div className="post-left">

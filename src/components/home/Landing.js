@@ -1,8 +1,8 @@
 import { Container, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import LoginForm from '../login/LoginForm';
+import LoginForm from '../login/FormLogin';
 
-export default function Landing() {
+export default function Login() {
 	return (
 		<>
 			<Col>

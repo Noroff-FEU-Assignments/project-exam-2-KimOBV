@@ -10,7 +10,7 @@ import { ArrowRightOnRectangleIcon, HashtagIcon, HomeIcon, MegaphoneIcon, UserIc
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
-import Avatar from '../common/DefaultAvatar';
+import Avatar from '../common/AvatarMissing';
 
 export default function NavLayout() {
 	const [auth, setAuth] = useContext(AuthContext);

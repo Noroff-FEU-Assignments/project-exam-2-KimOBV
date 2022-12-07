@@ -3,28 +3,22 @@ import { Link } from 'react-router-dom';
 import PostMedia from '../../common/PostMedia';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
-import Avatar from '../../common/DefaultAvatar';
-import Loading from '../../common/LoadingIndicator';
+import Avatar from '../../common/AvatarMissing';
+import Loading from '../../common/Loading';
 import Reactions from './Reactions';
 
 export default function GetFeedExplore() {
 	const { state } = useStore();
-
-	//console.log('state', state);
-
 	if (state.loading) {
 		return <Loading />;
 	}
-
 	if (state.error) {
 		return <div>{state.error}</div>;
 	}
-
 	return (
 		<>
 			<div className="container-posts">
 				{state.posts.map((post) => {
-					//console.log(post);
 					return (
 						<div key={post.id} className="container-post">
 							<Link to={`/u/${post.author.name}`} className="post-left">

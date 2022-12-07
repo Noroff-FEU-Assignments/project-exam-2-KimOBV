@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 import useAxios from '../../../hooks/useAxios';
 import PostMedia from '../../common/PostMedia';
-import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
-import moment from 'moment';
-import { Link } from 'react-router-dom';
 import ErrorMessage from '../../common/ErrorMessage';
-import Avatar from '../../common/DefaultAvatar';
-import Loading from '../../common/LoadingIndicator';
+import Avatar from '../../common/AvatarMissing';
+import Loading from '../../common/Loading';
 import Reactions from '../posts/Reactions';
+import moment from 'moment';
 
 export default function GetFeedHome() {
 	const [followers, setFollowers] = useState();
@@ -49,7 +49,6 @@ export default function GetFeedHome() {
 		<>
 			<div className="container-posts">
 				{followers.map((post) => {
-					//console.log(post);
 					return (
 						<div key={post.id} className="container-post">
 							<div className="post-left">

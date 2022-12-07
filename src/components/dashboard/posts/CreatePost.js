@@ -7,7 +7,7 @@ import useAxios from '../../../hooks/useAxios';
 import useStore from '../../../context/PostContext';
 import { PhotoIcon } from '@heroicons/react/24/outline';
 import { Accordion, Button, Card, useAccordionButton } from 'react-bootstrap';
-import Avatar from '../../common/DefaultAvatar';
+import Avatar from '../../common/AvatarMissing';
 import PostMedia from '../../common/PostMedia';
 
 const user = JSON.parse(localStorage.getItem('auth'));

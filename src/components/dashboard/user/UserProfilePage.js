@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import useAxios from '../../../hooks/useAxios';
-import ErrorMessage from '../../common/ErrorMessage';
 import { useParams, Link } from 'react-router-dom';
-import UpdateForm from './UpdateForm';
-import Avatar from '../../common/DefaultAvatar';
-import Banner from '../../common/DefaultBanner';
-import Dropdown from '../profiles/Dropdown';
+import useAxios from '../../../hooks/useAxios';
+import UpdateForm from './FormUpdate';
+import Avatar from '../../common/AvatarMissing';
+import Banner from '../../common/BannerMissing';
+import ErrorMessage from '../../common/ErrorMessage';
 import ModalVertical from '../../common/ModalVertical';
+import Loading from '../../common/Loading';
+import Dropdown from '../profiles/Dropdown';
 import Row from 'react-bootstrap/Row';
-import Loading from '../../common/LoadingIndicator';
 import UserPosts from './UserPosts';
 
 export default function UserProfile() {
@@ -28,7 +28,6 @@ export default function UserProfile() {
 		async function getProfile() {
 			try {
 				const response = await http.get(`profiles/${name}?_following=true&_followers=true`);
-				//console.log(response.data);
 				setProfile(response.data);
 			} catch (error) {
 				setError(error.toString());
@@ -106,8 +105,6 @@ export default function UserProfile() {
 						<button onClick={showFollowing}>X</button>
 						<h3 className="text-center">Following</h3>
 						{profile.following.map((follow) => {
-							//console.log(follow.followers);
-							//console.log(profile.followers);
 							return (
 								<Link to={`/u/${follow.name}`} key={follow.name}>
 									<div className="followCard" style={{ backgroundImage: `url(${follow.Banner})` }}>

@@ -2,8 +2,8 @@ import useAxios from '../../../hooks/useAxios';
 import { useEffect, useState } from 'react';
 import ErrorMessage from '../../common/ErrorMessage';
 import { Link } from 'react-router-dom';
-import Avatar from '../../common/DefaultAvatar';
-import Banner from '../../common/DefaultBanner';
+import Avatar from '../../common/AvatarMissing';
+import Banner from '../../common/BannerMissing';
 
 export default function ProfilesList() {
 	const [error, setError] = useState(null);
