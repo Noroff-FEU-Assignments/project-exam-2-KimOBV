@@ -16,7 +16,7 @@ export default function UserProfile() {
 	const [loading, setLoading] = useState(true);
 	const [profile, setProfile] = useState([]);
 	const [modalShow, setModalShow] = useState(false);
-	const [modalData, setModalData] = useState({});
+	const [modalData] = useState({});
 
 	document.title = `${profile.name} | Howler`;
 

@@ -6,12 +6,11 @@ import { AuthContext } from '../../context/AuthContext';
 import { BASE_URL } from '../../constants/api';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../common/ErrorMessage';
-import useStore from '../../context/PostContext';
 
 const url = BASE_URL + 'auth/login';
 
 const schema = yup.object().shape({
-	email: yup.string().required('Please enter your email.').email('Please enter a valid email adress.'),
+	email: yup.string().required('Please enter your email.').email('Please enter a valid email address.'),
 	password: yup.string().required('Please enter your password'),
 });
 

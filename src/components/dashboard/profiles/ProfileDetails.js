@@ -17,7 +17,7 @@ export default function ProfileDetails() {
 	const [profile, setProfile] = useState([]);
 	const [followers, setFollowers] = useState([]);
 	const [countFollowers, setCountFollowers] = useState(0);
-	const [following, setFollowing] = useState([]);
+	const [, setFollowing] = useState([]);
 	const [countFollowing, setCountFollowing] = useState(0);
 	const [auth] = useLocalStorage('auth');
 
