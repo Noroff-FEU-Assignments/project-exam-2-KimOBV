@@ -73,10 +73,12 @@ export default function NavLayout() {
 											Logout
 										</Link>
 										<ModalVertical show={modalShowLog} onHide={() => setModalShowLog(false)} heading="Do you want to log out of Howler?">
-											<p>Are you certain you want to log out?</p>
-											<button onClick={logout} className="cta-secondary">
-												Yes, log me out
-											</button>
+											<div className="div-body">
+												<p>Are you certain you want to log out?</p>
+												<button onClick={logout} className="btn-primary">
+													Yes, log me out
+												</button>
+											</div>
 										</ModalVertical>
 									</Popover>
 								}
@@ -90,7 +92,6 @@ export default function NavLayout() {
 				) : (
 					<NavLink onClick="reloadCurrent()" className="logo-container">
 						<img className="logo-img" src={logo} alt="Howler monkey" />
-						Howler
 					</NavLink>
 				)}
 			</Nav>

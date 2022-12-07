@@ -3,6 +3,7 @@
 }
 .ctr-nav {
 	margin-left: 3vw;
+	padding-top: 1em;
 	position: fixed;
 	height: 100vh;
 	display: flex;
@@ -37,6 +38,7 @@
 		}
 	}
 	.ctr-user {
+		padding-bottom: 1em;
 		img {
 			border-radius: 9999px;
 			border: 1px solid $bg-color;

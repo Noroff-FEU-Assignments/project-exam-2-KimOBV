@@ -268,17 +268,34 @@
 	justify-content: flex-end;
 
 	.r-l {
-		margin: auto;
-		width: 20%;
-		font-size: 1.6rem !important;
+		max-height: 4rem;
+		margin: auto !important;
+		padding: auto !important;
+		width: fit-content;
+		height: auto;
+		align-content: center;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+		font-size: 1.2rem !important;
+		svg {
+			font-size: 1.3rem !important;
+			margin-right: 0.2em;
+		}
 		span {
-			font-size: 1.5rem !important;
+			margin-right: 0.2em;
+			padding: 0em;
+			font-size: 1.2rem !important;
 		}
 	}
 	.r-r {
 		max-height: 4rem;
-		margin: auto 0em auto auto;
+		margin: auto !important;
+		padding: auto !important;
 		width: 80%;
+		height: auto;
+		align-content: center;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
@@ -286,10 +303,12 @@
 		font-size: 1.2rem !important;
 
 		p {
-			font-size: 1.2rem !important;
+			font-size: 1.3rem !important;
+			margin-right: 0.2em;
 		}
 		span {
-			margin: auto 0em auto auto;
+			margin-right: 0.2em;
+			padding: 0em;
 			font-size: 1.2rem !important;
 		}
 	}
