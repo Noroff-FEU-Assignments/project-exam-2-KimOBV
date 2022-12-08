@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Unfollow, Follow } from './Follow';
+import { Unfollow } from './Follow';
 import useLocalStorage from '../../../hooks/useLocalStorage';
 import useAxios from '../../../hooks/useAxios';
 import ErrorMessage from '../../common/ErrorMessage';
