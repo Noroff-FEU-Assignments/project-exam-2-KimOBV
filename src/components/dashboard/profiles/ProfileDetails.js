@@ -83,15 +83,29 @@ export default function ProfileDetails() {
 										<Popover id={`popover-view-foll`}>
 											<Popover.Body>
 												{profile.following.map((following) => {
+													console.log(auth.name, name);
 													return (
-														<Link className="user-card-sm" to={`/u/${following.name}`} onClick={redirect(`/u/${following.name}`)} key={following.name}>
-															<div className="user-card-l">
-																<Avatar image={following.avatar} class={'avatar-card'} />
-															</div>
-															<div className="user-card-r">
-																<h5>@{following.name}</h5>
-															</div>
-														</Link>
+														<>
+															{auth.name !== following.name ? (
+																<Link className="user-card-sm" to={`/u/${following.name}`} onClick={redirect(`/u/${following.name}`)} key={followers.name}>
+																	<div className="user-card-l">
+																		<Avatar image={following.avatar} class={'avatar-card'} />
+																	</div>
+																	<div className="user-card-r">
+																		<h5>@{following.name}</h5>
+																	</div>
+																</Link>
+															) : (
+																<Link className="user-card-sm" to={`/user/${following.name}`} onClick={redirect(`/user/${following.name}`)} key={followers.name}>
+																	<div className="user-card-l">
+																		<Avatar image={following.avatar} class={'avatar-card'} />
+																	</div>
+																	<div className="user-card-r">
+																		<h5>@{following.name}</h5>
+																	</div>
+																</Link>
+															)}
+														</>
 													);
 												})}
 											</Popover.Body>
@@ -110,14 +124,27 @@ export default function ProfileDetails() {
 											<Popover.Body>
 												{profile.followers.map((followers) => {
 													return (
-														<Link className="user-card-sm" to={`/u/${followers.name}`} onClick={redirect(`/u/${followers.name}`)} key={followers.name}>
-															<div className="user-card-l">
-																<Avatar image={followers.avatar} class={'avatar-card'} />
-															</div>
-															<div className="user-card-r">
-																<h5>@{followers.name}</h5>
-															</div>
-														</Link>
+														<>
+															{auth.name !== followers.name ? (
+																<Link className="user-card-sm" to={`/u/${followers.name}`} onClick={redirect(`/u/${followers.name}`)} key={followers.name}>
+																	<div className="user-card-l">
+																		<Avatar image={followers.avatar} class={'avatar-card'} />
+																	</div>
+																	<div className="user-card-r">
+																		<h5>@{followers.name}</h5>
+																	</div>
+																</Link>
+															) : (
+																<Link className="user-card-sm" to={`/user/${followers.name}`} onClick={redirect(`/user/${followers.name}`)} key={followers.name}>
+																	<div className="user-card-l">
+																		<Avatar image={followers.avatar} class={'avatar-card'} />
+																	</div>
+																	<div className="user-card-r">
+																		<h5>@{followers.name}</h5>
+																	</div>
+																</Link>
+															)}
+														</>
 													);
 												})}
 											</Popover.Body>
