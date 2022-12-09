@@ -8,12 +8,12 @@ import { AuthProvider } from './context/AuthContext';
 import { PostProvider } from './context/PostContext';
 import Login from './components/home/Login';
 import NotFound from './components/home/NotFound';
-import { BrowserRouter as Routes, Route } from 'react-router-dom';
 import './sass/styles.scss';
 import Register from './components/home/Register';
 import { Col, Container, Row } from 'react-bootstrap';
 import PageExplore from './components/dashboard/posts/PageExplore';
 import HomeFeed from './components/dashboard/following/PageHome';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
 	return (
