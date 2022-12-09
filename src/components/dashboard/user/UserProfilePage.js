@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, redirect } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import useAxios from '../../../hooks/useAxios';
 import UpdateForm from './FormUpdate';
 import Avatar from '../../common/AvatarMissing';

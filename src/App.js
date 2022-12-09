@@ -8,7 +8,7 @@ import { AuthProvider } from './context/AuthContext';
 import { PostProvider } from './context/PostContext';
 import Login from './components/home/Login';
 import NotFound from './components/home/NotFound';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Routes, Route } from 'react-router-dom';
 import './sass/styles.scss';
 import Register from './components/home/Register';
 import { Col, Container, Row } from 'react-bootstrap';
