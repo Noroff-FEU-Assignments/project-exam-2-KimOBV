@@ -76,6 +76,7 @@ export default function CreatePost() {
 			console.log(response.data);
 			if (response.status === 200 || response.status === 201) {
 				addPost(response.data);
+				reset();
 				window.location.reload();
 			}
 		} catch (error) {
