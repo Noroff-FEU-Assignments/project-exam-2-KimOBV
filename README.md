@@ -71,11 +71,12 @@ This exam was originally to be done over a period of 7 weeks, due to unforseen e
 
 I was given an 5 days extension to get everything done, and I have, and I haven't. There's 2000 things I'd like to adjust, add and remove - but alas, a deadline is a deadline.
 
+### Resources
+
 I'd like to give credit where credit is due and thank:
 - [Web Dev Simplified](https://blog.webdevsimplified.com) for the first steps and basic knowledge
 - [React Docs](https://beta.reactjs.org/apis/react/useReducer) for listing and solving every mistake I've decided to try something new (like useReducer)
 - [StackOverflow](https://stackoverflow.com) and all the users asking and answering any and every question I've had so far.
-- 
 
+Also a big'ol shoutout to my fellow students who has helped and answered my heed in the darkest times.
 
-### Resources
