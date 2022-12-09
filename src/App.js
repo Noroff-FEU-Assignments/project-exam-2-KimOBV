@@ -28,6 +28,7 @@ function App() {
 							<Row>
 								<Col md={7} className="ctr-feed">
 									<Routes>
+										<Route path="/" element={<Login />} />
 										<Route path="/login" element={<Login />} />
 										<Route path="/register" element={<Register />} />
 										<Route path="/home" element={<HomeFeed />} />

@@ -4,10 +4,14 @@ import PostMedia from '../../common/PostMedia';
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
 import Avatar from '../../common/AvatarMissing';
+import { AuthContext } from '../../../context/AuthContext';
 import Loading from '../../common/Loading';
 import Reactions from './Reactions';
+import { useContext } from 'react';
 
 export default function GetFeedExplore() {
+	const [auth] = useContext(AuthContext);
+
 	const { state } = useStore();
 	if (state.loading) {
 		return <Loading />;
@@ -19,15 +23,29 @@ export default function GetFeedExplore() {
 		<>
 			<div className="container-posts">
 				{state.posts.map((post) => {
+					let name = post.author.name;
 					return (
 						<div key={post.id} className="container-post">
-							<Link to={`/u/${post.author.name}`} className="post-left">
-								<Avatar image={post.author.avatar} class={'post-avatar'} />
-							</Link>
-							<div className="post-right">
-								<Link to={`/u/${post.author.name}`}>
-									<b>@{post.author.name}</b>
+							{auth.name !== name ? (
+								<Link to={`/u/${post.author.name}`} className="post-left">
+									<Avatar image={post.author.avatar} class={'post-avatar'} />
 								</Link>
+							) : (
+								<Link to={`/user/${post.author.name}`} className="post-left">
+									<Avatar image={post.author.avatar} class={'post-avatar'} />
+								</Link>
+							)}
+
+							<div className="post-right">
+								{auth.name !== name ? (
+									<Link to={`/u/${post.author.name}`}>
+										<b>@{post.author.name}</b>
+									</Link>
+								) : (
+									<Link to={`/user/${post.author.name}`}>
+										<b>@{post.author.name}</b>
+									</Link>
+								)}
 								<span>{moment(post.created).fromNow()}</span>
 								<Link to={`/posts/${post.id}`} className="post-cta">
 									<h3>{post.title}</h3>
