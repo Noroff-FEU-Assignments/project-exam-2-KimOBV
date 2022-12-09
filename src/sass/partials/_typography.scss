@@ -15,3 +15,42 @@ span,
 p {
 	font-family: $txt-normal !important;
 }
+
+.landing {
+	width: 100%;
+	padding: 0em;
+	display: flex;
+	flex-direction: row;
+
+	.title {
+		font-family: $txt-big;
+		display: flex;
+		flex-direction: row;
+		padding: auto;
+		margin: 0em;
+		width: 100%;
+		text-align: center;
+	}
+	.logo-h1 {
+		margin: 0em;
+		margin-left: auto;
+		font-weight: 800;
+		color: $clr-cta;
+	}
+	h1 {
+		margin: 0em;
+		margin-right: auto;
+		color: $clr-text;
+		font-weight: 800;
+		font-size: 5rem;
+	}
+	h3 {
+		margin: auto;
+		font-size: 2rem;
+	}
+}
+.reginfo {
+	text-align: center;
+	margin: auto 4.5em;
+	word-break: normal;
+}

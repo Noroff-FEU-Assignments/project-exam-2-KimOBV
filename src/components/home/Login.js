@@ -4,16 +4,17 @@ import LoginForm from '../login/FormLogin';
 export default function Login() {
 	return (
 		<>
-			<div>
-				<div className="landing">
-					<h3>Howler is what's happening and what people are talking about right now.</h3>
-					<br />
-					<p>We believe real change starts with conversation. Here, your voice matters.</p>
-
-					<LoginForm />
-
-					<Link to="/register">Not a user?</Link>
+			<div className="landing">
+				<div className="title">
+					<h1 className="logo-h1">Howler</h1>
+					<h1>!</h1>
 				</div>
+				<br />
+				<h3>Be loud, get heard!</h3>
+
+				<LoginForm />
+
+				<Link to="/register">Not a user?</Link>
 			</div>
 		</>
 	);

@@ -4,7 +4,7 @@ import ReactPost from './ReactPost';
 import Reactions from './Reactions';
 import PostMedia from '../../common/PostMedia';
 import { Link, useParams } from 'react-router-dom';
-import { BASE_URL } from '../../../constants/api';
+import { URL } from '../../../const/api';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { useStore } from '../../../context/PostContext';
@@ -22,7 +22,7 @@ export default function PostDetails(post) {
 
 	let { id } = useParams();
 
-	const url = BASE_URL + `posts/${id}?_author=true&_comments=true&_reactions=true`;
+	const url = URL + `posts/${id}?_author=true&_comments=true&_reactions=true`;
 
 	useEffect(() => {
 		async function getPostDetails() {

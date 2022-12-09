@@ -19,3 +19,14 @@
 	background-color: $clr-cta-hover !important;
 	color: $clr-text !important;
 }
+.post-btn:hover {
+	color: $clr-text !important;
+}
+.delete {
+	border: 2px solid $clr-alert !important;
+	background-color: transparent !important;
+}
+.delete:hover {
+	color: $clr-alert !important;
+	background-color: none !important;
+}

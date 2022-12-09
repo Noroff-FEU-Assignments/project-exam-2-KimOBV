@@ -1,4 +1,4 @@
-import notFound from '../../images/notFound.png';
+import notFound from '../../assets/notFound.png';
 
 export default function NorFound() {
 	document.title = `Explore | Howler`;

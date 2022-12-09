@@ -8,7 +8,7 @@ import ErrorMessage from '../../common/ErrorMessage';
 import ModalVertical from '../../common/ModalVertical';
 import Loading from '../../common/Loading';
 import Dropdown from '../profiles/Dropdown';
-import UserPosts from './UserPosts';
+import UserPosts from '../posts/UserPosts';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 export default function UserProfile() {

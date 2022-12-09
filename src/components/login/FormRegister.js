@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../../constants/api';
+import { URL } from '../../const/api';
 import ErrorMessage from '../common/ErrorMessage';
 
 const nameRegex = /^[a-zA-Z0-9_]+$/;
@@ -32,7 +32,7 @@ export default function RegisterForm() {
 		resolver: yupResolver(schema),
 	});
 
-	const url = BASE_URL + 'auth/register';
+	const url = URL + 'auth/register';
 
 	async function registerSubmit(data) {
 		setSubmitting(true);

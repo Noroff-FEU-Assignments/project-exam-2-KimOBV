@@ -5,7 +5,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import NavProfile from '../dashboard/user/NavProfile';
 import ModalVertical from '../common/ModalVertical';
-import logo from '../../images/Logo_Round.png';
+import logo from '../../assets/Logo_Round.png';
 import { ArrowRightOnRectangleIcon, HashtagIcon, HomeIcon, MegaphoneIcon, UserIcon, UsersIcon } from '@heroicons/react/24/outline';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';

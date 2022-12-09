@@ -1,17 +1,16 @@
 import { createContext, useReducer, useContext, useEffect } from 'react';
 import { AuthContext } from './AuthContext';
-import { BASE_URL } from '../constants/api';
+import { URL } from '../const/api';
 import PropTypes from 'prop-types';
 import postReducer, { initialState } from './postReducer';
 
 const PostContext = createContext(initialState);
 
-const postUrl = BASE_URL + 'posts?_author=true&_comments=true&_reactions=true';
+const postUrl = URL + 'posts?_author=true&_comments=true&_reactions=true';
 
 export const PostProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(postReducer, initialState);
-
 	const [auth] = useContext(AuthContext);
+	const [state, dispatch] = useReducer(postReducer, initialState);
 
 	useEffect(() => {
 		async function fetchPosts() {
@@ -37,10 +36,10 @@ export const PostProvider = ({ children }) => {
 		// eslint-disable-next-line
 	}, []);
 
-	const setUserAvatar = (img) => {
+	const addPost = (post) => {
 		dispatch({
-			type: 'SET_USER_AVATAR',
-			payload: img,
+			type: 'ADD_POST',
+			payload: post,
 		});
 	};
 
@@ -48,13 +47,6 @@ export const PostProvider = ({ children }) => {
 		dispatch({
 			type: 'SET_POSTS',
 			payload: posts,
-		});
-	};
-
-	const addPost = (post) => {
-		dispatch({
-			type: 'ADD_POST',
-			payload: post,
 		});
 	};
 
@@ -79,13 +71,6 @@ export const PostProvider = ({ children }) => {
 		});
 	};
 
-	const setComments = (comments) => {
-		dispatch({
-			type: 'SET_COMMENTS',
-			payload: comments,
-		});
-	};
-
 	const addComment = (comment) => {
 		dispatch({
 			type: 'ADD_COMMENT',
@@ -93,10 +78,10 @@ export const PostProvider = ({ children }) => {
 		});
 	};
 
-	const setReactions = (reactions) => {
+	const setComments = (comments) => {
 		dispatch({
-			type: 'SET_REACTIONS',
-			payload: reactions,
+			type: 'SET_COMMENTS',
+			payload: comments,
 		});
 	};
 
@@ -107,6 +92,20 @@ export const PostProvider = ({ children }) => {
 		});
 	};
 
+	const setReactions = (reactions) => {
+		dispatch({
+			type: 'SET_REACTIONS',
+			payload: reactions,
+		});
+	};
+
+	const setUserAvatar = (img) => {
+		dispatch({
+			type: 'SET_USER_AVATAR',
+			payload: img,
+		});
+	};
+
 	const setError = (error) => {
 		dispatch({
 			type: 'SET_ERROR',
@@ -114,7 +113,7 @@ export const PostProvider = ({ children }) => {
 		});
 	};
 
-	return <PostContext.Provider value={{ state, setUserAvatar, addPost, setUserPosts, removeUserPost, setDetails, setComments, addComment, setReactions, addReaction }}>{children}</PostContext.Provider>;
+	return <PostContext.Provider value={{ state, addPost, setDetails, setUserPosts, removeUserPost, addComment, setComments, addReaction, setReactions, setUserAvatar }}>{children}</PostContext.Provider>;
 };
 
 export const useStore = () => useContext(PostContext);

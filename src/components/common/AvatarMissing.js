@@ -1,4 +1,4 @@
-import defaultAvatar from '../../images/default-avatar.svg';
+import defaultAvatar from '../../assets/default-avatar.svg';
 
 export default function Avatar(props) {
 	return (

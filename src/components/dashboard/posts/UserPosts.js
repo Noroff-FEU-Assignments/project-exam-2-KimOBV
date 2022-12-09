@@ -3,7 +3,7 @@ import moment from 'moment';
 import useAxios from '../../../hooks/useAxios';
 import UpdatePost from './PostUpdate';
 import DeletePost from './PostDelete';
-import Reactions from '../posts/Reactions';
+import Reactions from './Reactions';
 import PostMedia from '../../common/PostMedia';
 import Avatar from '../../common/AvatarMissing';
 import ModalVertical from '../../common/ModalVertical';

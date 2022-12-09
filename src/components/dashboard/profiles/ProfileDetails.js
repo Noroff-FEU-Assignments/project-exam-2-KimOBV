@@ -7,7 +7,7 @@ import ErrorMessage from '../../common/ErrorMessage';
 import Banner from '../../common/BannerMissing';
 import Avatar from '../../common/AvatarMissing';
 import Loading from '../../common/Loading';
-import UserPosts from '../user/UserPosts';
+import UserPosts from '../posts/UserPosts';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 export default function ProfileDetails() {
@@ -87,7 +87,7 @@ export default function ProfileDetails() {
 													return (
 														<>
 															{auth.name !== following.name ? (
-																<Link className="user-card-sm" to={`/u/${following.name}`} onClick={redirect(`/u/${following.name}`)} key={followers.name}>
+																<Link className="user-card-sm" to={`/u/${following.name}`} onClick={redirect(`/u/${following.name}`)} key={following.name}>
 																	<div className="user-card-l">
 																		<Avatar image={following.avatar} class={'avatar-card'} />
 																	</div>
@@ -96,7 +96,7 @@ export default function ProfileDetails() {
 																	</div>
 																</Link>
 															) : (
-																<Link className="user-card-sm" to={`/user/${following.name}`} onClick={redirect(`/user/${following.name}`)} key={followers.name}>
+																<Link className="user-card-sm" to={`/user/${following.name}`} onClick={redirect(`/user/${following.name}`)} key={following.name}>
 																	<div className="user-card-l">
 																		<Avatar image={following.avatar} class={'avatar-card'} />
 																	</div>
@@ -126,7 +126,7 @@ export default function ProfileDetails() {
 													return (
 														<>
 															{auth.name !== followers.name ? (
-																<Link className="user-card-sm" to={`/u/${followers.name}`} onClick={redirect(`/u/${followers.name}`)} key={followers.name}>
+																<Link className="user-card-sm" to={`/u/${followers.name}`} onClick={redirect(`/u/${followers.name}`)} key={followers.id}>
 																	<div className="user-card-l">
 																		<Avatar image={followers.avatar} class={'avatar-card'} />
 																	</div>
@@ -135,7 +135,7 @@ export default function ProfileDetails() {
 																	</div>
 																</Link>
 															) : (
-																<Link className="user-card-sm" to={`/user/${followers.name}`} onClick={redirect(`/user/${followers.name}`)} key={followers.name}>
+																<Link className="user-card-sm" to={`/user/${followers.name}`} onClick={redirect(`/user/${followers.name}`)} key={followers.id}>
 																	<div className="user-card-l">
 																		<Avatar image={followers.avatar} class={'avatar-card'} />
 																	</div>

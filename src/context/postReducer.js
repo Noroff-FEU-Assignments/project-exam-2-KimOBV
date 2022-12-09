@@ -13,10 +13,10 @@ export default function postReducer(state, action) {
 	const { type, payload } = action;
 
 	switch (type) {
-		case 'SET_USER_AVATAR':
+		case 'ADD_POST':
 			return {
 				...state,
-				userAvatar: payload,
+				posts: [payload, ...state.posts],
 			};
 
 		case 'SET_POSTS':
@@ -25,12 +25,6 @@ export default function postReducer(state, action) {
 				posts: payload,
 				loading: false,
 				error: null,
-			};
-
-		case 'ADD_POST':
-			return {
-				...state,
-				posts: [payload, ...state.posts],
 			};
 
 		case 'SET_USER_POSTS':
@@ -51,15 +45,22 @@ export default function postReducer(state, action) {
 				details: payload,
 			};
 
+		case 'ADD_COMMENT':
+			return {
+				...state,
+				comments: [...state.comments, payload],
+			};
+
 		case 'SET_COMMENTS':
 			return {
 				...state,
 				comments: payload,
 			};
-		case 'ADD_COMMENT':
+
+		case 'ADD_REACTION':
 			return {
 				...state,
-				comments: [...state.comments, payload],
+				reactions: [...state.reactions, payload],
 			};
 
 		case 'SET_REACTIONS':
@@ -68,10 +69,10 @@ export default function postReducer(state, action) {
 				reactions: payload,
 			};
 
-		case 'ADD_REACTION':
+		case 'SET_USER_AVATAR':
 			return {
 				...state,
-				reactions: [...state.reactions, payload],
+				userAvatar: payload,
 			};
 
 		case 'SET_ERROR':

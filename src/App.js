@@ -1,4 +1,4 @@
-import NavLayout from './components/layout/NavLayout';
+import NavLayout from './components/navmenu/NavLayout';
 import UserProfilePage from './components/dashboard/user/UserProfilePage';
 import PostDetails from './components/dashboard/posts/PostDetails';
 import ProfilesPage from './components/dashboard/profiles/ProfilesPage';
