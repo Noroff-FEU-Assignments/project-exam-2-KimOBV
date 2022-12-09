@@ -23,7 +23,7 @@ export default function UpdateBanner({ name }) {
 	return (
 		<form onSubmit={handleSubmit(updateBanner)}>
 			<input {...register('banner')} placeholder="http://BannerURLGoesHere.com" id="banner" />
-			<button className="cta btn-primary">Update</button>
+			<button className="cta special btn-primary">Update</button>
 		</form>
 	);
 }

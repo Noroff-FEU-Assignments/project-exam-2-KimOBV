@@ -9,9 +9,9 @@ h2,
 h3,
 h4,
 h5 {
-	font-family: $txt-big;
+	font-family: $txt-big !important;
 }
 span,
 p {
-	font-family: $txt-normal;
+	font-family: $txt-normal !important;
 }

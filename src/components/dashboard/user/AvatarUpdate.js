@@ -23,7 +23,7 @@ export default function UpdateBanner({ name }) {
 	return (
 		<form onSubmit={handleSubmit(updateAvatar)}>
 			<input {...register('avatar')} placeholder="http://AvatarURLGoesHere.com" id="avatar" />
-			<button className="cta btn-primary">Update</button>
+			<button className="cta special btn-primary">Update</button>
 		</form>
 	);
 }

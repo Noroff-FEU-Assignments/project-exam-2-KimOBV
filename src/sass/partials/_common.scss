@@ -30,6 +30,7 @@ img {
 	width: 5em;
 }
 #popover-view-foll {
+	z-index: 5;
 	border: $border;
 	border-radius: 50px;
 	width: 50em;

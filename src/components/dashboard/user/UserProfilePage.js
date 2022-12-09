@@ -114,7 +114,9 @@ export default function UserProfile() {
 								>
 									<p variant="secondary">Followers {profile._count.followers}</p>
 								</OverlayTrigger>
-								<Dropdown />
+								<div id="special">
+									<Dropdown />
+								</div>
 							</div>
 						</div>
 					</div>
