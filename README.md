@@ -8,6 +8,9 @@ You can [view the project here](https://howler-app.netlify.app)
 
 The platform uses [Noroffs API](https://noroff-api-docs.netlify.app/) & [These Endpoints](https://nf-api.onrender.com/docs/static/index.html).
 
+
+[nb! this project is not meant for commercial use and contains 1 or more images w/o licensing and/or rights.]
+
 ## Goal
 To take the skills learned over the last two years and take on an extensive project where the finished product should reflect the candidate's general development capabilities, in addition to visual and technical skills.
 
