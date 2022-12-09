@@ -1,16 +1,24 @@
 export const initialState = {
+	userAvatar: '',
 	posts: [],
 	loading: true,
-	error: null,
 	details: null,
 	comments: [],
 	reactions: [],
+	userPosts: [],
+	error: null,
 };
 
-const postReducer = (state, action) => {
+export default function postReducer(state, action) {
 	const { type, payload } = action;
 
 	switch (type) {
+		case 'SET_USER_AVATAR':
+			return {
+				...state,
+				userAvatar: payload,
+			};
+
 		case 'SET_POSTS':
 			return {
 				...state,
@@ -19,17 +27,22 @@ const postReducer = (state, action) => {
 				error: null,
 			};
 
-		case 'SET_ERROR':
-			return {
-				...state,
-				error: payload,
-				loading: false,
-			};
-
 		case 'ADD_POST':
 			return {
 				...state,
-				posts: [...state.posts, payload],
+				posts: [payload, ...state.posts],
+			};
+
+		case 'SET_USER_POSTS':
+			return {
+				...state,
+				userPosts: payload,
+			};
+
+		case 'REMOVE_USER_POST':
+			return {
+				...state,
+				userPosts: state.userPosts.filter((post) => post.id !== payload),
 			};
 
 		case 'POST_DETAILS':
@@ -61,15 +74,14 @@ const postReducer = (state, action) => {
 				reactions: [...state.reactions, payload],
 			};
 
-		case 'REMOVE_POST':
+		case 'SET_ERROR':
 			return {
 				...state,
-				posts: state.posts.filter((post) => post.id !== payload),
+				error: payload,
+				loading: false,
 			};
 
 		default:
 			throw new Error(`No case for type ${type} found in postReducer.`);
 	}
-};
-
-export default postReducer;
+}

@@ -6,7 +6,8 @@ import ProfileDetails from './components/dashboard/profiles/ProfileDetails';
 import CreatePost from './components/dashboard/posts/CreatePost';
 import { AuthProvider } from './context/AuthContext';
 import { PostProvider } from './context/PostContext';
-import Landing from './components/home/Landing';
+import Login from './components/home/Login';
+import NotFound from './components/home/NotFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './sass/styles.scss';
 import Register from './components/home/Register';
@@ -19,32 +20,32 @@ function App() {
 		<Container fluid="xl">
 			<AuthProvider>
 				<PostProvider>
-					<Router>
-						<Row>
-							<Col md={3} className="ctr-header">
-								<NavLayout />
-							</Col>
-							<Col md={9} className="ctr-main ">
-								<Row>
-									<Col md={7} className="ctr-feed">
-										<Routes>
-											<Route path="/" exact element={<Landing />} />
-											<Route path="/register" exact element={<Register />} />
-											<Route path="/home" element={<HomeFeed />} />
-											<Route path="/explore" element={<PageExplore />} />
-											<Route path="/people" element={<ProfilesPage />} />
-											<Route path="/posts/:id" element={<PostDetails />} />
-											<Route path="/user/:name" element={<UserProfilePage />} />
-											<Route path="/u/:name" element={<ProfileDetails />} />
-											<Route path="/new-post" element={<CreatePost />} />
-											<Route path="*" element={<HomeFeed />} />
-										</Routes>
-									</Col>
-									<Col md={3} responsive="md" className="ctr-sidebar"></Col>
-								</Row>
-							</Col>
-						</Row>
-					</Router>
+					<Row>
+						<Col md={3} className="ctr-header">
+							<NavLayout />
+						</Col>
+						<Col md={9} className="ctr-main ">
+							<Row>
+								<Col md={7} className="ctr-feed">
+									<Routes>
+										<Route path="/login" element={<Login />} />
+										<Route path="/register" element={<Register />} />
+										<Route path="/home" element={<HomeFeed />} />
+										<Route path="/explore" element={<PageExplore />} />
+										<Route path="/people" element={<ProfilesPage />} />
+										<Route path="/posts/:id" exact element={<PostDetails />} />
+										<Route path="/user/:name" exact element={<UserProfilePage />} />
+										<Route path="/u/:name" exact element={<ProfileDetails />} />
+										<Route path="/new-post" element={<CreatePost />} />
+										<Route path="*" element={<NotFound />} />
+										<Route path="/u/*" element={<NotFound />} />
+										<Route path="/user/*" element={<NotFound />} />
+									</Routes>
+								</Col>
+								<Col md={3} responsive="md" className="ctr-sidebar"></Col>
+							</Row>
+						</Col>
+					</Row>
 				</PostProvider>
 			</AuthProvider>
 		</Container>

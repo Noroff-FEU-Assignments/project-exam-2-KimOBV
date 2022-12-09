@@ -20,7 +20,7 @@ export default function NavLayout() {
 
 	const logout = () => {
 		setAuth(null);
-		navigate('/');
+		navigate('/login');
 		setModalShowLog(false);
 	};
 
@@ -54,7 +54,8 @@ export default function NavLayout() {
 								</NavLink>
 								<br />
 								<div className="ctr-post">
-									<NavLink className={'btn btn-primary post-btn'} to="/new-post">
+									<NavLink className={'btn btn-primary post-btn post-btn-nav'} to="/new-post">
+										<span id="post-btn-txt">Post</span>
 										<MegaphoneIcon id="post-icon" />
 									</NavLink>
 								</div>
@@ -75,7 +76,7 @@ export default function NavLayout() {
 										<ModalVertical show={modalShowLog} onHide={() => setModalShowLog(false)} heading="Do you want to log out of Howler?">
 											<div className="div-body">
 												<p>Are you certain you want to log out?</p>
-												<button onClick={logout} className="btn-primary">
+												<button onClick={logout} className="btn-primary btn-logout">
 													Yes, log me out
 												</button>
 											</div>
@@ -128,10 +129,12 @@ export default function NavLayout() {
 														Logout
 													</Link>
 													<ModalVertical show={modalShowLog} onHide={() => setModalShowLog(false)} heading="Do you want to log out of Howler?">
-														<p>Are you certain you want to log out?</p>
-														<button onClick={logout} className="cta-secondary">
-															Yes, log me out
-														</button>
+														<div className="div-body">
+															<p>Are you certain you want to log out?</p>
+															<button onClick={logout} className="btn-primary btn-logout">
+																Yes, log me out
+															</button>
+														</div>
 													</ModalVertical>
 												</Popover>
 											}

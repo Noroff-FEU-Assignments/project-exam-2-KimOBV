@@ -8,6 +8,14 @@
 	border: none;
 	border-radius: 9999px;
 }
+
 .btn-primary:hover {
 	background-color: $clr-cta-hover !important;
+}
+.btn.active {
+	background-color: $clr-cta !important;
+}
+.btn.active:hover {
+	background-color: $clr-cta-hover !important;
+	color: $clr-text !important;
 }

@@ -1,3 +1,14 @@
+.ctr-notFound img {
+	width: 100% !important;
+	height: auto !important;
+}
+#notFound {
+	margin-left: 1em;
+	position: relative;
+	top: 6em;
+	color: $clr-links;
+}
+
 .ctr-feed {
 	width: 38em;
 	min-width: 375px !important;
@@ -100,7 +111,7 @@
 			margin: auto 0em auto 1em;
 			padding: auto 0em auto 0em;
 			font-size: 1.5rem !important;
-			color: $clr-icon;
+			color: $clr-icon !important;
 		}
 		.post-count {
 			margin: auto auto auto 0.6em;
@@ -280,7 +291,7 @@
 		flex-wrap: wrap;
 		font-size: 1.2rem !important;
 		svg {
-			font-size: 1.3rem !important;
+			font-size: 1.5rem !important;
 			margin-right: 0.2em;
 		}
 		span {

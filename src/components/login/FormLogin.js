@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { BASE_URL } from '../../constants/api';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../common/ErrorMessage';
+import useStore from '../../context/PostContext';
 
 const url = BASE_URL + 'auth/login';
 
@@ -17,6 +18,7 @@ const schema = yup.object().shape({
 export default function LoginForm() {
 	const [submitting, setSubmitting] = useState(false);
 	const [loginError, setLoginError] = useState(null);
+	const { setUserAvatar } = useStore();
 
 	const navigate = useNavigate();
 
@@ -49,7 +51,9 @@ export default function LoginForm() {
 			const json = await response.json();
 			if (response.ok) {
 				setAuth(json);
+				setUserAvatar(json.avatar);
 				navigate('/home');
+				window.location.reload(); //bad, need to make a better solution
 			} else {
 				setLoginError('wrong username or password');
 			}
@@ -76,7 +80,7 @@ export default function LoginForm() {
 						{errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
 					</div>
 				</div>
-				<button className="cta">{submitting ? 'Hold on' : 'Log in'}</button>
+				<button className="btn btn-primary">{submitting ? 'Hold on' : 'Log in'}</button>
 			</form>
 		</>
 	);

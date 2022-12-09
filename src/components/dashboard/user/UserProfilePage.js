@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, redirect } from 'react-router-dom';
 import useAxios from '../../../hooks/useAxios';
 import UpdateForm from './FormUpdate';
 import Avatar from '../../common/AvatarMissing';
@@ -8,8 +8,8 @@ import ErrorMessage from '../../common/ErrorMessage';
 import ModalVertical from '../../common/ModalVertical';
 import Loading from '../../common/Loading';
 import Dropdown from '../profiles/Dropdown';
-import Row from 'react-bootstrap/Row';
 import UserPosts from './UserPosts';
+import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 export default function UserProfile() {
 	const [error, setError] = useState(null);
@@ -47,19 +47,6 @@ export default function UserProfile() {
 		return <ErrorMessage />;
 	}
 
-	const postContainer = document.querySelector('.postContainer');
-
-	const showFollowers = () => {
-		const followerContainer = document.querySelector('.followers-container');
-		followerContainer.classList.toggle('d-none');
-		postContainer.classList.toggle('d-none');
-	};
-	const showFollowing = () => {
-		const followerContainer = document.querySelector('.following-container');
-		followerContainer.classList.toggle('d-none');
-		postContainer.classList.toggle('d-none');
-	};
-
 	return (
 		<>
 			<div className="ctr-profile">
@@ -75,8 +62,58 @@ export default function UserProfile() {
 								<p className="text-muted">{profile.email}</p>
 							</div>
 							<div className="people-info-bottom">
-								<p onClick={showFollowing}>Following {profile._count.following}</p>
-								<p onClick={showFollowers}>Followers {profile._count.followers}</p>
+								<OverlayTrigger
+									className="view-foll"
+									trigger="click"
+									placement="bottom"
+									rootClose="true"
+									overlay={
+										<Popover id={`popover-view-foll`}>
+											<Popover.Body>
+												{profile.following.map((follow) => {
+													return (
+														<Link className="user-card-sm" to={`/u/${follow.name}`} key={follow.name}>
+															<div className="user-card-l">
+																<Avatar image={follow.avatar} class={'avatar-card'} />
+															</div>
+															<div className="user-card-r">
+																<h5>@{follow.name}</h5>
+															</div>
+														</Link>
+													);
+												})}
+											</Popover.Body>
+										</Popover>
+									}
+								>
+									<p variant="secondary">Following {profile._count.following}</p>
+								</OverlayTrigger>
+								<OverlayTrigger
+									className="view-foll"
+									trigger="click"
+									placement="bottom"
+									rootClose="true"
+									overlay={
+										<Popover id={`popover-view-foll`}>
+											<Popover.Body>
+												{profile.followers.map((follow) => {
+													return (
+														<Link className="user-card-sm" to={`/u/${follow.name}`} key={follow.name}>
+															<div className="user-card-l">
+																<Avatar image={follow.avatar} class={'avatar-card'} />
+															</div>
+															<div className="user-card-r">
+																<h5>@{follow.name}</h5>
+															</div>
+														</Link>
+													);
+												})}
+											</Popover.Body>
+										</Popover>
+									}
+								>
+									<p variant="secondary">Followers {profile._count.followers}</p>
+								</OverlayTrigger>
 								<Dropdown />
 							</div>
 						</div>
@@ -86,40 +123,7 @@ export default function UserProfile() {
 					</ModalVertical>
 				</div>
 
-				<Row className="user-content">
-					<div className="d-none posts-container followers-container">
-						<button onClick={showFollowers}>X</button>
-						<h3 className="text-center">Followers</h3>
-						{profile.followers.map((follow) => {
-							return (
-								<Link to={`/u/${follow.name}`} key={follow.name}>
-									<div className="followCard">
-										<Avatar image={follow.avatar} class={'following-avatar'} />
-										<div>@{follow.name}</div>
-									</div>
-								</Link>
-							);
-						})}
-					</div>
-					<div className="d-none posts-container following-container">
-						<button onClick={showFollowing}>X</button>
-						<h3 className="text-center">Following</h3>
-						{profile.following.map((follow) => {
-							return (
-								<Link to={`/u/${follow.name}`} key={follow.name}>
-									<div className="followCard" style={{ backgroundImage: `url(${follow.Banner})` }}>
-										<Avatar image={follow.avatar} class={'following-avatar'} />
-										<h4>@{follow.name}</h4>
-									</div>
-								</Link>
-							);
-						})}
-					</div>
-				</Row>
 				<UserPosts />
-				<ModalVertical show={modalShow} onHide={() => setModalShow(false)} heading="Update post">
-					<UpdateForm id={modalData.id} title={modalData.title} body={modalData.body} />
-				</ModalVertical>
 			</div>
 		</>
 	);

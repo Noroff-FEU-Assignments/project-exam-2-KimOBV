@@ -9,10 +9,10 @@ body {
 
 a {
 	text-decoration: none;
-	color: $clr-links;
+	color: $clr-links !important;
 }
 a:hover {
-	color: $clr-cta-hover;
+	color: $clr-cta-hover !important;
 }
 .ctr-link a {
 	font-size: 1.2em;
@@ -28,4 +28,99 @@ a:hover {
 
 img {
 	width: 5em;
+}
+#popover-view-foll {
+	border: $border;
+	border-radius: 50px;
+	width: 50em;
+	height: fit-content;
+	margin: auto;
+	padding: 0em;
+	background-color: $bg-color !important;
+}
+
+.popover-header {
+	border-radius: 50px;
+	background-color: $bg-color !important;
+}
+.user-card-sm {
+	border-radius: 50px;
+	border: $border;
+	border-radius: 9999px;
+	width: 100%;
+	margin: auto auto 1.5em auto;
+	padding: 0em;
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	justify-content: flex-start;
+
+	.user-card-l {
+		width: 25%;
+		margin: 0em;
+		padding: 0em;
+
+		img {
+			width: 64px;
+			height: 64px;
+			margin: em;
+			border-radius: 9999px;
+			object-fit: cover;
+		}
+	}
+	.user-card-r {
+		width: 75%;
+		height: 64px;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+
+		h5 {
+			vertical-align: middle;
+			font-size: 1rem;
+			margin: auto 1em;
+			padding: auto;
+		}
+	}
+}
+.landing {
+	margin: auto;
+	padding: 2em 1em;
+	display: flex;
+	flex-direction: column;
+
+	form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: 1em auto;
+		min-width: 24em;
+		width: 90%;
+		padding: auto 2em;
+
+		div {
+			margin: auto;
+			padding: auto;
+			width: 100%;
+
+			label {
+				color: $clr-text;
+				font-size: 1.2rem;
+				margin: 0em 0em 0.5em 0em;
+			}
+
+			input {
+				margin: 0em 0em 1em 0em;
+			}
+		}
+		button {
+			width: 12em;
+			margin: 1em auto;
+		}
+	}
+
+	a {
+		margin: 1em auto !important;
+		font-size: 1.5em !important;
+	}
 }

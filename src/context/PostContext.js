@@ -1,7 +1,7 @@
 import { createContext, useReducer, useContext, useEffect } from 'react';
 import { AuthContext } from './AuthContext';
 import { BASE_URL } from '../constants/api';
-
+import PropTypes from 'prop-types';
 import postReducer, { initialState } from './postReducer';
 
 const PostContext = createContext(initialState);
@@ -23,12 +23,11 @@ export const PostProvider = ({ children }) => {
 			};
 			try {
 				const response = await fetch(postUrl, options);
-				//console.log('postlist', response);
 				if (response.ok) {
 					const json = await response.json();
 					setPosts(json);
 				} else {
-					setError('There was an error during the request');
+					setError('There was an error during the API request');
 				}
 			} catch (error) {
 				setError(error);
@@ -38,6 +37,13 @@ export const PostProvider = ({ children }) => {
 		// eslint-disable-next-line
 	}, []);
 
+	const setUserAvatar = (img) => {
+		dispatch({
+			type: 'SET_USER_AVATAR',
+			payload: img,
+		});
+	};
+
 	const setPosts = (posts) => {
 		dispatch({
 			type: 'SET_POSTS',
@@ -45,10 +51,24 @@ export const PostProvider = ({ children }) => {
 		});
 	};
 
-	const setError = (error) => {
+	const addPost = (post) => {
 		dispatch({
-			type: 'SET_ERROR',
-			payload: error,
+			type: 'ADD_POST',
+			payload: post,
+		});
+	};
+
+	const setUserPosts = (userPost) => {
+		dispatch({
+			type: 'SET_USER_POSTS',
+			payload: userPost,
+		});
+	};
+
+	const removeUserPost = (postId) => {
+		dispatch({
+			type: 'REMOVE_USER_POST',
+			payload: postId,
 		});
 	};
 
@@ -87,25 +107,20 @@ export const PostProvider = ({ children }) => {
 		});
 	};
 
-	const addPost = (post) => {
-		//await API call to return to get new id, then:
+	const setError = (error) => {
 		dispatch({
-			type: 'ADD_POST',
-			payload: post,
+			type: 'SET_ERROR',
+			payload: error,
 		});
 	};
 
-	const removePost = (postId) => {
-		// do API call
-		dispatch({
-			type: 'REMOVE_POST',
-			payload: postId,
-		});
-	};
-
-	return <PostContext.Provider value={{ state, setDetails, setComments, addComment, setReactions, addReaction, addPost, removePost }}>{children}</PostContext.Provider>;
+	return <PostContext.Provider value={{ state, setUserAvatar, addPost, setUserPosts, removeUserPost, setDetails, setComments, addComment, setReactions, addReaction }}>{children}</PostContext.Provider>;
 };
 
 export const useStore = () => useContext(PostContext);
 
 export default useStore;
+
+PostProvider.propTypes = {
+	children: PropTypes.node.isRequired,
+};

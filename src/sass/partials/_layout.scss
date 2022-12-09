@@ -35,6 +35,10 @@
 		.ctr-post {
 			width: 235px;
 			margin: 0em;
+
+			svg {
+				display: none;
+			}
 		}
 	}
 	.ctr-user {
@@ -149,12 +153,21 @@
 					width: 100%;
 					display: flex;
 					align-content: center;
+
 					.post-btn {
 						padding: 0.5em;
 						height: fit-content;
 						width: fit-content;
+
+						#post-btn-txt {
+							display: none;
+						}
+						svg {
+							display: block;
+						}
+
 						#post-icon {
-							font-size: 2em;
+							font-size: 1.6em;
 							margin: 0em !important;
 							padding: 0em !important;
 						}

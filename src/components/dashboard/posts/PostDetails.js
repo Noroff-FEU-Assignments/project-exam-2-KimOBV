@@ -8,7 +8,7 @@ import { BASE_URL } from '../../../constants/api';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { useStore } from '../../../context/PostContext';
-import { ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline';
+import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 import Avatar from '../../common/AvatarMissing';
 import moment from 'moment';
 
@@ -84,7 +84,7 @@ export default function PostDetails(post) {
 						<div activekey={key} onSelect={(k) => setKey(k)} className="post-interactions ">
 							<div className="ctr-reaction">
 								<div className="r-l">
-									<ChatBubbleBottomCenterIcon className="icon post-icon" />
+									<ChatBubbleBottomCenterTextIcon className="icon post-icon" />
 									<span className="post-count">{state.comments.length}</span>
 								</div>
 								<Reactions reactions={reactions} />

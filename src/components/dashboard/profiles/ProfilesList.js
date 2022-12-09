@@ -34,7 +34,7 @@ export default function ProfilesList() {
 		<>
 			<div className="container-peoples">
 				{profiles.map((profile, index) => {
-					//console.log(profile);
+					console.log(profile._count);
 					return (
 						<div key={index} className="container-people">
 							<Banner image={profile.banner} class={'people-banner'} />

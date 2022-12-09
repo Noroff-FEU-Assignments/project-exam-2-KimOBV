@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
 import useAxios from '../../../hooks/useAxios';
 import UpdatePost from './PostUpdate';
@@ -12,6 +12,7 @@ import ErrorMessage from '../../common/ErrorMessage';
 import { useParams, Link } from 'react-router-dom';
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import { ChatBubbleBottomCenterTextIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
+import { AuthContext } from '../../../context/AuthContext';
 
 export default function UserPosts() {
 	const [error, setError] = useState(null);
@@ -19,6 +20,7 @@ export default function UserPosts() {
 	const [profile, setProfile] = useState([]);
 	const [modalShow, setModalShow] = useState(false);
 	const [modalData, setModalData] = useState({});
+	const [auth] = useContext(AuthContext);
 
 	let { name } = useParams();
 
@@ -58,7 +60,7 @@ export default function UserPosts() {
 							<div className="post-right">
 								<div id="post-r-top">
 									<Link to={`/u/${post.author.name}`}>
-										<b>{post.author.name}</b> · {moment(post.created).fromNow()}
+										<b>@{post.author.name}</b> · {moment(post.created).fromNow()}
 									</Link>
 									<OverlayTrigger
 										className="icon icon-nav-mob"
@@ -82,9 +84,13 @@ export default function UserPosts() {
 											</Popover>
 										}
 									>
-										<Link id="settings" variant="link">
-											<PencilSquareIcon id="settings" />
-										</Link>
+										{auth.name !== name ? (
+											<div></div>
+										) : (
+											<Link id="settings" variant="link">
+												<PencilSquareIcon id="settings" />
+											</Link>
+										)}
 									</OverlayTrigger>
 								</div>
 								<Link to={`/posts/${post.id}`} className="post-cta">

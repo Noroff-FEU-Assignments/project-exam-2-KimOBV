@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Unfollow } from './Follow';
+import { Link, redirect, useParams } from 'react-router-dom';
+import { Follow, Unfollow } from './Follow';
 import useLocalStorage from '../../../hooks/useLocalStorage';
 import useAxios from '../../../hooks/useAxios';
 import ErrorMessage from '../../common/ErrorMessage';
@@ -8,6 +8,7 @@ import Banner from '../../common/BannerMissing';
 import Avatar from '../../common/AvatarMissing';
 import Loading from '../../common/Loading';
 import UserPosts from '../user/UserPosts';
+import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 export default function ProfileDetails() {
 	const [error, setError] = useState(null);
@@ -49,27 +50,14 @@ export default function ProfileDetails() {
 	}
 
 	if (error) {
-		return <ErrorMessage>{error}</ErrorMessage>;
+		return <ErrorMessage />;
 	}
 
 	const Following = followers.map((follow) => {
 		return follow.name;
 	});
 
-	const Follow = Following.includes(auth.name);
-
-	const postContainer = document.querySelector('.postContainer');
-
-	const QtyFollowers = () => {
-		const followerContainer = document.querySelector('.followers-container');
-		followerContainer.classList.toggle('d-none');
-		postContainer.classList.toggle('d-none');
-	};
-	const QtyFollowing = () => {
-		const followerContainer = document.querySelector('.following-container');
-		followerContainer.classList.toggle('d-none');
-		postContainer.classList.toggle('d-none');
-	};
+	const followCheck = Following.includes(auth.name);
 
 	return (
 		<>
@@ -86,42 +74,61 @@ export default function ProfileDetails() {
 								<p className="text-muted">{profile.email}</p>
 							</div>
 							<div className="people-info-bottom">
-								<p onClick={QtyFollowing}>Following {countFollowing}</p>
-								<p onClick={QtyFollowers}>Followers {countFollowers}</p>
-								<div>{Follow ? <Unfollow follow={setFollowers} followers={followers} count={setCountFollowers} /> : <Follow follow={setFollowers} count={setCountFollowers} />}</div>
+								<OverlayTrigger
+									className="view-foll"
+									trigger="click"
+									placement="bottom"
+									rootClose="true"
+									overlay={
+										<Popover id={`popover-view-foll`}>
+											<Popover.Body>
+												{profile.following.map((following) => {
+													return (
+														<Link className="user-card-sm" to={`/u/${following.name}`} onClick={redirect(`/u/${following.name}`)} key={following.name}>
+															<div className="user-card-l">
+																<Avatar image={following.avatar} class={'avatar-card'} />
+															</div>
+															<div className="user-card-r">
+																<h5>@{following.name}</h5>
+															</div>
+														</Link>
+													);
+												})}
+											</Popover.Body>
+										</Popover>
+									}
+								>
+									<p variant="secondary">Following {countFollowing}</p>
+								</OverlayTrigger>
+								<OverlayTrigger
+									className="view-foll"
+									trigger="click"
+									placement="bottom"
+									rootClose="true"
+									overlay={
+										<Popover id={`popover-view-foll`}>
+											<Popover.Body>
+												{profile.followers.map((followers) => {
+													return (
+														<Link className="user-card-sm" to={`/u/${followers.name}`} onClick={redirect(`/u/${followers.name}`)} key={followers.name}>
+															<div className="user-card-l">
+																<Avatar image={followers.avatar} class={'avatar-card'} />
+															</div>
+															<div className="user-card-r">
+																<h5>@{followers.name}</h5>
+															</div>
+														</Link>
+													);
+												})}
+											</Popover.Body>
+										</Popover>
+									}
+								>
+									<p variant="secondary">Followers {countFollowers}</p>
+								</OverlayTrigger>
+								<div>{followCheck ? <Unfollow follow={setFollowers} followers={followers} count={setCountFollowers} /> : <Follow follow={setFollowers} count={setCountFollowers} />}</div>
 							</div>
 						</div>
-					</div>
-				</div>
-
-				<div className="user-content">
-					<div className="d-none posts-container followers-container">
-						<button onClick={QtyFollowers}>X</button>
-						<h3 className="text-center">Followers</h3>
-						{profile.followers.map((follow) => {
-							return (
-								<Link to={`/u/${follow.name}`} key={follow.name}>
-									<div className="followCard">
-										<Avatar image={follow.avatar} class={'following-avatar'} />
-										<div>@{follow.name}</div>
-									</div>
-								</Link>
-							);
-						})}
-					</div>
-					<div className="d-none posts-container following-container">
-						<button onClick={QtyFollowing}>X</button>
-						<h3 className="text-center">Following</h3>
-						{profile.following.map((follow) => {
-							return (
-								<Link to={`/u/${follow.name}`} key={follow.name}>
-									<div className="followCard" style={{ backgroundImage: `url(${follow.Banner})` }}>
-										<Avatar image={follow.avatar} class={'following-avatar'} />
-										<h4>@{follow.name}</h4>
-									</div>
-								</Link>
-							);
-						})}
 					</div>
 				</div>
 				<UserPosts />

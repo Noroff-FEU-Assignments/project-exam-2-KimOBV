@@ -47,7 +47,7 @@ export default function CreatePost() {
 	};
 
 	function CustomToggle({ children, eventKey }) {
-		const decoratedOnClick = useAccordionButton(eventKey, () => console.log('totally custom!'));
+		const decoratedOnClick = useAccordionButton(eventKey, () => console.log(''));
 
 		return (
 			<button type="button" style={{ backgroundColor: 'transparent', border: 'none' }} onClick={decoratedOnClick}>

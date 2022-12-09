@@ -64,6 +64,19 @@
 
 	.modal-body {
 		padding: 2em;
+
+		.div-body {
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+
+			.btn-logout {
+				min-width: 10em;
+				margin: 1em auto;
+				align-self: center !important;
+				border-radius: 50px !important;
+			}
+		}
 	}
 
 	form {
